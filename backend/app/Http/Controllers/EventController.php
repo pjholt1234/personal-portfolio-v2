@@ -9,6 +9,6 @@ class EventController extends Controller
 {
     public function index(): JsonResponse
     {
-        return response()->json(['events' => Event::all()]);
+        return response()->json(['data' => Event::all()]);
     }
 }

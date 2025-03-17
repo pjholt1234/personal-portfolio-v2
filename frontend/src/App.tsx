@@ -1,8 +1,13 @@
+import { Route } from "wouter";
+import Home from "@pages/Home.tsx";
+import Background from "@components/shared-ui/Background/Background.tsx";
 
 const App = () => {
   return (
     <>
-      <h1>Portfolio v3</h1>
+        <Background />
+
+        <Route path="/" component={() => <Home />} />
     </>
   )
 }

@@ -1,0 +1,15 @@
+const combineClassNames = (...classList: (string | false | null | undefined)[]): string => {
+    return classList.filter(Boolean).join(' ');
+}
+
+const formatDateTime = (date: string): string => {
+    return new Date(date).toLocaleDateString('en-UK', {
+        year: 'numeric',
+        month: 'long',
+    });
+}
+
+export {
+    combineClassNames,
+    formatDateTime
+}

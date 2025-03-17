@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body, html, #root {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: Inter, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  color: $primary;
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
+p {
+  color: $secondary;
+}
+
+.filter {
+  &--date {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid $tertiary;
+    border-radius: 15px;
+    background-color: $background-colour;
+    color: $secondary;
+  }
+
+  &--basic {
+    padding: 10px;
+    min-width: 150px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $tertiary;
+    border-radius: 15px;
+    color: $secondary;
+    font-size: 12px;
+    background-color: $background-colour;
+
+    &::placeholder {
+      color: $secondary;
+    }
+  }
+}
