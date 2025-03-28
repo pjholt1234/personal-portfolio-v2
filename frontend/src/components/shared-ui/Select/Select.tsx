@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import styles from './Select.module.scss';
-import {combineClassNames} from "@helpers";
+import {mergeClassNames} from "@helpers";
 
 interface SelectProps {
     options: Option[];
@@ -12,6 +12,12 @@ interface SelectProps {
 const Select: FC<SelectProps> = ({ options, value, onChange, placeholder }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectedOption, setSelectedOption] = useState<string>(value);
+
+    const getFormattedOption = (value: string) => {
+        if(!value || value === 'All') return;
+
+        return options.find((option) => option.value === value)?.label;
+    }
 
     const toggleDropdown = () => {
         setIsOpen((prev) => !prev);
@@ -25,11 +31,11 @@ const Select: FC<SelectProps> = ({ options, value, onChange, placeholder }) => {
     };
 
     return (
-        <div className={combineClassNames('filter--basic', styles.select)} onClick={toggleDropdown}>
+        <div className={mergeClassNames('filter--basic', styles.select)} onClick={toggleDropdown}>
             {!selectedOption && <div className={styles['placeholder']}>{placeholder}</div>}
             <div className={styles['select__container']}>
                 <div>
-                    {selectedOption}
+                    {getFormattedOption(selectedOption)}
                 </div>
             </div>
             {isOpen && (

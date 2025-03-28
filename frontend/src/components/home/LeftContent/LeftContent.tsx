@@ -1,8 +1,9 @@
 import {FC, ReactNode} from "react";
 import Card from "@components/shared-ui/Card/Card";
 import Typography from "@components/shared-ui/Typography/Typography";
-import {combineClassNames} from "@helpers";
+import {mergeClassNames} from "@helpers";
 import styles from './LeftContent.module.scss';
+import Navigation from "@components/home/Navigation/Navigation";
 
 interface LeftContentProps {
     className?: string;
@@ -14,7 +15,7 @@ const LeftContent:FC<LeftContentProps> = ({
     children,
 }) => {
     return (
-        <div className={combineClassNames(className, styles.content)}>
+        <div className={mergeClassNames(className, styles.content)}>
             <Card className={styles.content__card}>
                 <Typography component="h1">
                     PJ Holt
@@ -22,6 +23,9 @@ const LeftContent:FC<LeftContentProps> = ({
                 <Typography component="h2">
                     Full stack developer
                 </Typography>
+            </Card>
+            <Card>
+                <Navigation />
             </Card>
             {children}
         </div>

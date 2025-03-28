@@ -1,23 +1,23 @@
 import styles from "./Typography.module.scss";
 import {createElement, FC, ReactNode} from "react";
-import {combineClassNames} from "@helpers";
+import {mergeClassNames} from "@helpers";
 
 
 
 interface TypographyProps {
-    classNames?: string;
+    className?: string;
     component?: "p" | "h1" | "h2" | "h3" | "h4";
     children?: ReactNode
 }
 
 const Typography: FC<TypographyProps> = ({
-    classNames = '',
+    className = '',
     component = '',
     children = ''
 }) => {
 
     const attributes = {
-        className: combineClassNames(classNames, styles[component]),
+        className: mergeClassNames(className, styles[component]),
     }
 
     return createElement(component, attributes, children);

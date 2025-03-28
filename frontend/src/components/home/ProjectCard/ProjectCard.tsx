@@ -17,13 +17,16 @@ const ProjectCard: FC<ProjectCard> = ({
         <Card className={styles['project-card']}>
             <div className={styles['project-card__hover-effect']}></div>
             <div className={styles['project-card__header']}>
-                <Typography component="p" classNames={styles['project-card__date']}>
+                <Typography component="p" className={styles['project-card__date']}>
                     {project.start_date ? formatDateTime(project.start_date) : 'Unknown'} - {project.end_date ? formatDateTime(project.end_date) : 'Present'}
                 </Typography>
-                <Typography component="h2" classNames={styles['project-card__title']}>
+                <Typography component="h2" className={styles['project-card__title']}>
                     {project.title}  <ArrowOutward className={styles['project-card__link']} fontSize="small" />
                 </Typography>
             </div>
+            <Typography component="p" className={styles['project-card__subtitle']}>
+                {project.description}
+            </Typography>
             <div className={styles['project-card__pills']}>
                 {project.technologies.map((technology: string) => (
                     <Pill key={technology} className={styles['project-card__pill']}>
@@ -31,9 +34,6 @@ const ProjectCard: FC<ProjectCard> = ({
                     </Pill>
                 ))}
             </div>
-            <Typography component="p" classNames={styles['project-card__subtitle']}>
-                {project.description}
-            </Typography>
         </Card>
     )
 }

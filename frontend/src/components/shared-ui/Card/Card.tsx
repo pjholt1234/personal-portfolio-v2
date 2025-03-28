@@ -1,6 +1,6 @@
 import styles from './Card.module.scss';
 import {FC, ReactNode} from "react";
-import {combineClassNames} from "@helpers";
+import {mergeClassNames} from "@helpers";
 
 interface CardProps {
     className?: string;
@@ -12,7 +12,7 @@ const Card: FC<CardProps> = ({
     children
 }) => {
     return (
-        <div className={combineClassNames(className, styles.card)}>
+        <div className={mergeClassNames(className, styles.card)}>
             {children}
         </div>
     )

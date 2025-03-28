@@ -1,4 +1,4 @@
-const combineClassNames = (...classList: (string | false | null | undefined)[]): string => {
+const mergeClassNames = (...classList: (string | false | null | undefined)[]): string => {
     return classList.filter(Boolean).join(' ');
 }
 
@@ -10,6 +10,6 @@ const formatDateTime = (date: string): string => {
 }
 
 export {
-    combineClassNames,
+    mergeClassNames,
     formatDateTime
 }

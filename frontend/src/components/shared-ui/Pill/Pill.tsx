@@ -1,5 +1,5 @@
 import {FC, ReactNode} from "react";
-import {combineClassNames} from "@helpers";
+import {mergeClassNames} from "@helpers";
 import styles from './Pill.module.scss';
 
 interface PillProps {
@@ -9,7 +9,7 @@ interface PillProps {
 
 const Pill: FC<PillProps> = ({ className, children }) => {
     return (
-        <div className={combineClassNames(className, styles.pill)}>
+        <div className={mergeClassNames(className, styles.pill)}>
             {children}
         </div>
     )
