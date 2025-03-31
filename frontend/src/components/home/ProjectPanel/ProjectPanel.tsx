@@ -3,10 +3,15 @@ import {getProjects} from "@/api";
 import styles from "@components/home/ProjectPanel/ProjectPanel.module.scss";
 import Filters from "@components/shared-ui/Filters/Filters";
 import ProjectCard from "@components/home/ProjectCard/ProjectCard";
+import AnimatedCard from "@components/shared-ui/AnimatedCard/AnimatedCard";
+import {usePanel} from "@/hooks/PanelContext";
+
 const ProjectPanel = () => {
     const [projects, setProjects] = useState<Project[]>([]);
     const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
     const [filter, setFilter] = useState({ type: "", title: "" });
+    const { currentPanel } = usePanel();
+    const isVisible = currentPanel === "projects";
 
     const allFilters: Filter[] = [
         {
@@ -83,7 +88,9 @@ const ProjectPanel = () => {
             <div className={styles['project-panel--cards']}>
                 {filteredProjects?.length > 0 ? (
                     filteredProjects?.map((project, index: number) => (
-                        <ProjectCard key={index} project={project} />
+                        <AnimatedCard key={index} index={index} isVisible={isVisible}>
+                            <ProjectCard project={project} />
+                        </AnimatedCard>
                     ))
                 ) : (
                     <p>No projects found.</p>

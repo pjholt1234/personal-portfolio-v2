@@ -3,6 +3,7 @@ import {mergeClassNames} from "@helpers";
 import styles from "./RightContent.module.scss";
 import {usePanel} from "@/hooks/PanelContext";
 import ProjectPanel from "@components/home/ProjectPanel/ProjectPanel";
+import AnimatedPanel from "@components/shared-ui/AnimatedPanel/AnimatedPanel";
 
 interface RightContentProps {
     className?: string;
@@ -11,22 +12,17 @@ interface RightContentProps {
 const RightContent: FC<RightContentProps> = ({ className }) => {
     const { currentPanel } = usePanel();
 
-    const renderPanel = (): ReactNode => {
-        switch (currentPanel) {
-            case "home":
-                return <h1>Home</h1>;
-            case "projects":
-                return <ProjectPanel />;
-            case "experience":
-                return <h1>Experience</h1>;
-            default:
-                return <h1>Home</h1>;
-        }
-    }
-
     return (
         <div className={mergeClassNames(className, styles.content)}>
-            {renderPanel()}
+            <AnimatedPanel isVisible={currentPanel === "home"}>
+                <h1>Home</h1>
+            </AnimatedPanel>
+            <AnimatedPanel isVisible={currentPanel === "projects"}>
+                <ProjectPanel />
+            </AnimatedPanel>
+            <AnimatedPanel isVisible={currentPanel === "experience"}>
+                <h1>Experience</h1>
+            </AnimatedPanel>
         </div>
     );
 };

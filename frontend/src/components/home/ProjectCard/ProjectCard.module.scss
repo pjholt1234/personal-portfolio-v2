@@ -1,10 +1,11 @@
 .project-card {
-  width: 75%;
-  height: 200px;
+  width: 90%;
   justify-content: left;
   position: relative;
   padding: 10px;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
 
   &__header {
     display: flex;
@@ -21,6 +22,7 @@
 
   &__subtitle {
     margin: 0;
+    margin-bottom: 10px;
   }
 
   &__date {
@@ -29,7 +31,8 @@
 
   &__pills {
     display: flex;
-    margin-top: 10px;
+    margin-top: auto;
+    margin-bottom: 10px;
   }
 
   &__hover-effect {

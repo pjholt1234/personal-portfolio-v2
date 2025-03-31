@@ -1,0 +1,20 @@
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+} 
