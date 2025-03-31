@@ -4,6 +4,19 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+
+  padding: 10px;
+  min-width: 150px;
+  flex-direction: column;
+  border: 1px solid $tertiary;
+  border-radius: 15px;
+  color: $secondary;
+  font-size: 12px;
+  background-color: $background-colour;
+
+  &::placeholder {
+    color: $secondary;
+  }
 }
 
 .dropdown {

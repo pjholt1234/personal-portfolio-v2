@@ -19,12 +19,17 @@
     transition: color 0.3s ease;
   }
 
+  &__subtitle {
+    margin: 0;
+  }
+
   &__date {
     width: 40%;
   }
 
   &__pills {
     display: flex;
+    margin-top: 10px;
   }
 
   &__hover-effect {

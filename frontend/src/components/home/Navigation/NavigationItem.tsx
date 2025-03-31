@@ -20,7 +20,7 @@ const NavigationItem:FC<NavigationItemProps> = ({ title, location }) => {
         }
 
         if (location === "experience") {
-            getEvents().catch((error) => console.error("Error prefetching projects:", error));
+            getEvents().catch((error) => console.error("Error prefetching events:", error));
         }
     };
 
