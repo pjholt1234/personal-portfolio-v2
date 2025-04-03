@@ -1,9 +1,10 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import {mergeClassNames} from "@helpers";
 import styles from "./RightContent.module.scss";
 import {usePanel} from "@/hooks/PanelContext";
 import ProjectPanel from "@components/home/ProjectPanel/ProjectPanel";
 import AnimatedPanel from "@components/shared-ui/AnimatedPanel/AnimatedPanel";
+import ExperiencePanel from "@components/home/ExperiencePanel/ExperiencePanel";
 
 interface RightContentProps {
     className?: string;
@@ -21,7 +22,7 @@ const RightContent: FC<RightContentProps> = ({ className }) => {
                 <ProjectPanel />
             </AnimatedPanel>
             <AnimatedPanel isVisible={currentPanel === "experience"}>
-                <h1>Experience</h1>
+                <ExperiencePanel />
             </AnimatedPanel>
         </div>
     );

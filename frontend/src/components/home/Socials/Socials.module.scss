@@ -1,0 +1,15 @@
+.socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  color: #63748d;
+  cursor: pointer;
+  margin: 0 5px;
+
+  &:hover {
+    color: $tertiary;
+  }
+}
