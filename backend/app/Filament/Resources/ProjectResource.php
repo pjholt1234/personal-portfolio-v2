@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\ProjectTypesEnum;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
-use App\ProjectTypesEnum;
-use Filament\Forms;
+use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -15,11 +15,11 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProjectResource extends Resource
 {
+    use HasBlocks;
+
     protected static ?string $model = Project::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -46,6 +46,9 @@ class ProjectResource extends Resource
                 DatePicker::make('start_date')
                     ->required(),
                 DatePicker::make('end_date'),
+                Builder::make('content')
+                    ->blocks(self::getBlocks())
+                    ->columnSpanFull()
             ]);
     }
 

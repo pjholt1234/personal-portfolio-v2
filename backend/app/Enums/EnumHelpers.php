@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Enums;
 
+use config\BlockTypesEnum;
 use Illuminate\Support\Arr;
 
 trait EnumHelpers
@@ -16,12 +17,15 @@ trait EnumHelpers
         $cases = [];
 
         foreach(self::all() as $case){
-            $cases[] = [
-                $case->name => $case->value
-            ];
+            $cases[$case->name] = $case->value;
         }
 
         return $cases;
+    }
+
+    public static function fromName( string $name ): BlockTypesEnum
+    {
+        return constant("self::$name");
     }
 
     public static function fromNames( mixed $names ): array
