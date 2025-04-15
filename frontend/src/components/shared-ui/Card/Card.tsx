@@ -11,6 +11,7 @@ interface CardProps {
     subtitle?: ReactNode | string;
     description?: string;
     footer?: ReactNode;
+    children?: ReactNode;
 }
 
 const Card: FC<CardProps> = ({
@@ -19,7 +20,8 @@ const Card: FC<CardProps> = ({
     title,
     subtitle,
     description,
-    footer
+    footer,
+    children
 }) => {
     const renderPrefix = () => {
         if (prefix) {
@@ -73,16 +75,27 @@ const Card: FC<CardProps> = ({
         return null;
     }
 
+    const renderBody = () => {
+        if(children) {
+            return children
+        }
+
+        return (
+            <>
+                <div className={styles['card__header']}>
+                    {renderPrefix()}
+                    {renderTitle()}
+                </div>
+                {renderDescription()}
+                {footer}
+            </>
+        )
+    }
 
     return (
         <div className={mergeClassNames(className, styles['card'])}>
             <div className={styles['card__hover-effect']}></div>
-            <div className={styles['card__header']}>
-                {renderPrefix()}
-                {renderTitle()}
-            </div>
-            {renderDescription()}
-            {footer}
+            {renderBody()}
         </div>
     )
 }

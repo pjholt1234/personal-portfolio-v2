@@ -13,6 +13,7 @@
       "@assets/*": ["src/assets/*"],
       "@helpers": ["src/helpers.ts"],
       "@types": ["src/types.d.ts"],
+      "@utils/*": ["src/utils/*"],
     }
   },
   "include": [

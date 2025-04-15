@@ -15,11 +15,13 @@ class Event extends Model
         'description_long',
         'start_date',
         'end_date',
-        'content'
+        'content',
+        'slug',
     ];
 
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
+        'content' => 'json',
     ];
 }

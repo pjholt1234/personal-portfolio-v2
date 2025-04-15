@@ -13,6 +13,7 @@ export default defineConfig({
       '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
       '@helpers': fileURLToPath(new URL('./src/helpers.ts', import.meta.url)),
       '@types': fileURLToPath(new URL('./src/types.d.ts', import.meta.url)),
+      '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
     },
   },
   css: {

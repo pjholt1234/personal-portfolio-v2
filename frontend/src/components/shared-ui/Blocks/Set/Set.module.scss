@@ -1,0 +1,10 @@
+.set {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+
+    &--item {
+        color: white;
+    }
+}

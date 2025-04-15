@@ -2,8 +2,8 @@
 
 namespace App\Filament\Blocks;
 
+use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
-use config\BlockTypesEnum;
 use Filament\Forms\Components\Textarea;
 
 

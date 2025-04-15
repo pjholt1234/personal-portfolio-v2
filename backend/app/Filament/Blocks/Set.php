@@ -2,8 +2,8 @@
 
 namespace App\Filament\Blocks;
 
+use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
-use config\BlockTypesEnum;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 
@@ -40,7 +40,7 @@ class Set extends AbstractBlock {
         return [
             'type' => $blockContent['type'],
             'eyebrow' => $this->getField($blockData, 'eyebrow'),
-            'content' => $this->getSetField($blockData),
+            'set' => $this->getSetField($blockData),
         ];
     }
 

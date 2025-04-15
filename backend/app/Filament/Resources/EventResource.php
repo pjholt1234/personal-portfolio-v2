@@ -30,6 +30,9 @@ class EventResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->required(),
+                TextInput::make('slug')
+                    ->unique(Event::class, 'slug', ignoreRecord: true)
+                    ->required(),
                 TextInput::make('subtitle'),
                 Select::make('type')
                     ->options(EventTypesEnum::toArray())

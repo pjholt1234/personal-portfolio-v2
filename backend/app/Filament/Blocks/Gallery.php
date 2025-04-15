@@ -2,9 +2,11 @@
 
 namespace App\Filament\Blocks;
 
+use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
-use config\BlockTypesEnum;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
 
@@ -17,12 +19,24 @@ class Gallery extends AbstractBlock {
     public function getBlockSchema(): array
     {
         return [
-            FileUpload::make('images')
+            Repeater::make('images')
                 ->label('Images')
-                ->image()
-                ->required()
-                ->multiple()
-                ->minFiles(2)
+                ->schema([
+                    FileUpload::make('image')
+                        ->label('Image')
+                        ->image()
+                        ->required()
+                        ->columnSpan(2),
+                    TextInput::make('alt')
+                        ->label('Alt')
+                        ->columnSpan(2),
+                    TextInput::make('description')
+                        ->label('Description')
+                        ->nullable()
+                        ->columnSpan(2),
+                ])
+                ->minItems(1)
+                ->columns(1)
                 ->columnSpan(2),
         ];
     }
@@ -38,19 +52,23 @@ class Gallery extends AbstractBlock {
         return [
             'type' => $blockContent['type'],
             'eyebrow' => $this->getField($blockData, 'eyebrow'),
-            'image_urls' => $this->getImageUrls($blockData),
+            'images' => $this->getImages($blockData),
         ];
     }
 
-    private function getImageUrls(array $blockData): array
+    private function getImages(array $blockData): array
     {
         $imagesField = $this->getField($blockData, 'images');
-        $imageUrls = [];
+        $images = [];
 
         foreach($imagesField as $imageFileName) {
-            $imageUrls[] = $imageFileName ? asset('storage/' . $imageFileName) : null;
+            $images[] = [
+                'image_url' => asset('storage/' . $this->getField($imageFileName, 'image')),
+                'alt' => $this->getField($imageFileName, 'alt'),
+                'description' => $this->getField($imageFileName, 'description'),
+            ];
         }
 
-        return $imageUrls;
+        return $images;
     }
 }

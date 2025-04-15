@@ -2,7 +2,6 @@
 
 namespace App\Enums;
 
-use config\BlockTypesEnum;
 use Illuminate\Support\Arr;
 
 trait EnumHelpers

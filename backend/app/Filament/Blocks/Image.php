@@ -2,8 +2,8 @@
 
 namespace App\Filament\Blocks;
 
+use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
-use config\BlockTypesEnum;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 
@@ -17,16 +17,17 @@ class Image extends AbstractBlock {
     public function getBlockSchema(): array
     {
         return [
-            TextInput::make('label')
-                ->label('Label')
-                ->nullable()
-                ->columnSpan(2),
             FileUpload::make('image')
                 ->label('Image')
                 ->image()
                 ->required()
-                ->minFiles(1)
-                ->maxFiles(1)
+                ->columnSpan(2),
+            TextInput::make('alt')
+                ->label('Alt')
+                ->columnSpan(2),
+            TextInput::make('description')
+                ->label('Description')
+                ->nullable()
                 ->columnSpan(2),
         ];
     }
@@ -42,8 +43,11 @@ class Image extends AbstractBlock {
         return [
             'type' => $blockContent['type'],
             'eyebrow' => $this->getField($blockData, 'eyebrow'),
-            'label' => $this->getField($blockData, 'label'),
-            'image_url' => $this->getImageUrl($blockData),
+            'image' => [
+                'alt' => $this->getField($blockData, 'alt'),
+                'description' => $this->getField($blockData, 'description'),
+                'image_url' => $this->getImageUrl($blockData),
+            ]
         ];
     }
 

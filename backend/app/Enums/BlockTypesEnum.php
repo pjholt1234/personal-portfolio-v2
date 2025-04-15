@@ -1,8 +1,6 @@
 <?php
 
-namespace config;
-
-use App\Enums\EnumHelpers;
+namespace App\Enums;
 
 enum BlockTypesEnum: string
 {

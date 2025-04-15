@@ -14,5 +14,5 @@ Route::controller(ProjectController::class)->group(function(){
 });
 
 Route::controller(BlockController::class)->group(function(){
-    Route::get('/{modelName}/{id}/blocks', 'getBlocks');
+    Route::get('/{modelName}/{slug}/blocks', 'getBlocks');
 });

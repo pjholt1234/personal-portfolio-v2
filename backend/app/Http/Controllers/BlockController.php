@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 
 class BlockController extends Controller
 {
-    public function getBlocks(string $modelName, int $id, BlockManagerService $blockManagerService): JsonResponse
+    public function getBlocks(string $modelName, string $slug, BlockManagerService $blockManagerService): JsonResponse
     {
         $modelMap = [
             'page' => Page::class,
@@ -25,11 +25,9 @@ class BlockController extends Controller
         }
 
         $modelClass = $modelMap[$modelName];
+        $model = $modelClass::where('slug', $slug)->first();
 
-        try {
-            $model = $modelClass::findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            report($e);
+        if(empty($model)) {
             return response()->json(['error' => 'Resource not found.'], 404);
         }
 

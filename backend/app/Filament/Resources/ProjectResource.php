@@ -30,6 +30,9 @@ class ProjectResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->required(),
+                TextInput::make('slug')
+                    ->unique(Project::class, 'slug', ignoreRecord: true)
+                    ->required(),
                 TextInput::make('subtitle'),
                 Select::make('type')
                     ->options(ProjectTypesEnum::toArray())

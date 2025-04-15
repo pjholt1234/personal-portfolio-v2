@@ -37,7 +37,18 @@ const getProjects = async () => {
     }
 }
 
+const getBlocks = async (pageType: string, pageSlug: string) => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${pageType}/${pageSlug}/blocks`);
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching projects:', error);
+        throw error;
+    }
+}
+
 export {
     getEvents,
-    getProjects
+    getProjects,
+    getBlocks
 }

@@ -35,3 +35,14 @@ interface CareerEvent {
     description_long?: string;
     icon?: string;
 }
+
+interface Block {
+    eyebrow: ?string;
+    type: string;
+}
+
+interface Image {
+    image_url: string;
+    alt: string;
+    description?: string;
+}

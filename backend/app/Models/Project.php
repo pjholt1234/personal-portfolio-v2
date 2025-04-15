@@ -17,11 +17,13 @@ class Project extends Model
         'start_date',
         'end_date',
         'content',
+        'slug',
     ];
 
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
+        'content' => 'json',
     ];
 
 
