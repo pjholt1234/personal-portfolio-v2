@@ -1,8 +1,7 @@
-import Card from "@components/shared-ui/Card/Card";
 import {FC} from "react";
 import styles from './ProjectCard.module.scss';
 import {formatDateTime} from "@helpers";
-import Pill from "@components/shared-ui/Pill/Pill";
+import { Pill, Card } from "@shared-ui";
 
 interface ProjectCard {
     project: Project;

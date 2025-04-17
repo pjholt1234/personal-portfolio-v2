@@ -1,6 +1,6 @@
 import {FC, ReactNode} from "react";
 import styles from './PageLayout.module.scss'
-import {mergeClassNames} from "@helpers";
+import { mergeClassNames } from "@helpers";
 
 
 interface PageLayoutProps {

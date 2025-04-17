@@ -1,9 +1,8 @@
 import { FC } from "react";
-import Typography from "@components/shared-ui/Typography/Typography";
+import { Typography } from "@shared-ui";
 import {mergeClassNames} from "@helpers";
 import styles from './LeftContent.module.scss';
-import Navigation from "@components/home/Navigation/Navigation";
-import Socials from "@components/home/Socials/Socials";
+import { Navigation, Socials } from "@global";
 
 interface LeftContentProps {
     className?: string;

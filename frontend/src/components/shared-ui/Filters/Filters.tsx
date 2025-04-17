@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./Filters.module.scss";
-import Select from "@components/shared-ui/Select/Select";
+import { Select } from "@shared-ui";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { mergeClassNames } from "@/helpers";

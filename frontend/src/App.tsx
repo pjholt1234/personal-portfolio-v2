@@ -1,6 +1,6 @@
 import { Route } from "wouter";
 import Home from "@pages/Home.tsx";
-import Background from "@components/shared-ui/Background/Background.tsx";
+import { Background } from "@global";
 
 const App = () => {
   return (

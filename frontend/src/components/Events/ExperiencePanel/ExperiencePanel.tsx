@@ -1,9 +1,9 @@
-import {useEffect, useState} from "react";
-import {getEvents} from "@/api";
-import AnimatedCard from "@components/shared-ui/AnimatedCard/AnimatedCard";
-import {usePanel} from "@/hooks/PanelContext";
-import EventCard from "@components/home/EventCard/EventCard";
-import styles from "@components/home/ExperiencePanel/ExperiencePanel.module.scss";
+import { useEffect, useState } from "react";
+import { getEvents } from "@api";
+import { AnimatedCard } from "@shared-ui";
+import { usePanel } from "@/hooks/PanelContext";
+import { EventCard } from "@events";
+import styles from "./ExperiencePanel.module.scss";
 
 const ExperiencePanel = () => {
     const [events, setEvents] = useState<CareerEvent[]>([]);

@@ -2,10 +2,10 @@ import { FC } from "react";
 import {mergeClassNames} from "@helpers";
 import styles from "./RightContent.module.scss";
 import {usePanel} from "@/hooks/PanelContext";
-import ProjectPanel from "@components/home/ProjectPanel/ProjectPanel";
-import AnimatedPanel from "@components/shared-ui/AnimatedPanel/AnimatedPanel";
-import ExperiencePanel from "@components/home/ExperiencePanel/ExperiencePanel";
-import HomePanel from "@components/home/HomePanel/HomePanel";
+import { ProjectPanel } from "@projects";
+import { AnimatedPanel } from "@shared-ui";
+import { ExperiencePanel } from "@events";
+import { HomePanel } from "@home";
 
 interface RightContentProps {
     className?: string;

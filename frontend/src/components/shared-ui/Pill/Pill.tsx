@@ -1,5 +1,5 @@
-import {FC, ReactNode} from "react";
-import {mergeClassNames} from "@helpers";
+import { FC, ReactNode } from "react";
+import { mergeClassNames } from "@helpers";
 import styles from './Pill.module.scss';
 
 interface PillProps {

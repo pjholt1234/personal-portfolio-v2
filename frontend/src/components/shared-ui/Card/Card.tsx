@@ -1,8 +1,8 @@
 import styles from './Card.module.scss';
-import React, {FC, ReactNode} from "react";
-import {mergeClassNames} from "@helpers";
+import React, { FC, ReactNode } from "react";
+import { mergeClassNames } from "@helpers";
 import Typography from "@components/shared-ui/Typography/Typography";
-import {ArrowOutward} from "@mui/icons-material";
+import { ArrowOutward } from "@mui/icons-material";
 
 interface CardProps {
     className?: string;

@@ -1,6 +1,6 @@
 import styles from "./Set.module.scss";
-import {FC} from "react";
-import Pill from "@components/shared-ui/Pill/Pill";
+import { FC } from "react";
+import { Pill } from "@shared-ui";
 
 interface SetProps extends Block {
     set: any[];

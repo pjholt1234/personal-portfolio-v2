@@ -1,5 +1,5 @@
 import styles from './Text.module.scss';
-import {FC} from "react";
+import { FC } from "react";
 
 interface TextProps extends Block {
     content?: TrustedHTML;

@@ -1,6 +1,6 @@
 import styles from "./Typography.module.scss";
-import {createElement, FC, ReactNode} from "react";
-import {mergeClassNames} from "@helpers";
+import { createElement, FC, ReactNode } from "react";
+import { mergeClassNames } from "@helpers";
 
 
 

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import styles from './Select.module.scss';
-import {mergeClassNames} from "@helpers";
+import { mergeClassNames } from "@helpers";
 
 interface SelectProps {
     options: Option[];
@@ -23,7 +23,7 @@ const Select: FC<SelectProps> = ({ options, value, onChange, placeholder }) => {
         setIsOpen((prev) => !prev);
     };
 
-    const handleOptionClick = (option: string, event: MouseEvent) => {
+    const handleOptionClick = (option: string, event: any) => {
         event.stopPropagation();
         setSelectedOption(option);
         onChange(option);

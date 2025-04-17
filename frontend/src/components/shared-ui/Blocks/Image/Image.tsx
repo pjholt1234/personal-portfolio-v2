@@ -1,6 +1,6 @@
 import {FC} from "react";
 import styles from "./Image.module.scss";
-import Typography from "@components/shared-ui/Typography/Typography";
+import { Typography } from "@shared-ui";
 
 
 interface ImageProps extends Block {

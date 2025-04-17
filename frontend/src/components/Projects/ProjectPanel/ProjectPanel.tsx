@@ -1,10 +1,9 @@
 import {useEffect, useState} from "react";
-import {getProjects} from "@/api";
-import styles from "@components/home/ProjectPanel/ProjectPanel.module.scss";
-import Filters from "@components/shared-ui/Filters/Filters";
-import ProjectCard from "@components/home/ProjectCard/ProjectCard";
-import AnimatedCard from "@components/shared-ui/AnimatedCard/AnimatedCard";
-import {usePanel} from "@/hooks/PanelContext";
+import {getProjects} from "@api";
+import styles from "./ProjectPanel.module.scss";
+import { ProjectCard } from "@projects";
+import { AnimatedCard, Filters } from "@shared-ui";
+import { usePanel } from "@/hooks/PanelContext";
 
 const ProjectPanel = () => {
     const [projects, setProjects] = useState<Project[]>([]);

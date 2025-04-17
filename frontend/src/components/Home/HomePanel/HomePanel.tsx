@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from "react";
-import {getBlocks} from "@/api"
-import BlockRenderer from "@utils/BlockRenderer";
+import { getBlocks } from "@api"
+import { BlockRenderer } from "@utils";
 import {usePanel} from "@/hooks/PanelContext";
 import styles from "./HomePanel.module.scss";
 

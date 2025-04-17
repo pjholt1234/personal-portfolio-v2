@@ -1,6 +1,7 @@
-import Card from "@components/shared-ui/Card/Card";
-import {FC} from "react";
-import {formatDateTime} from "@helpers";
+import { Card } from "@shared-ui";
+import { FC } from "react";
+import { formatDateTime } from "@helpers";
+import styles from './EventCard.module.scss';
 
 interface EventCard {
     event: CareerEvent;
@@ -23,7 +24,7 @@ const EventCard: FC<EventCard> = ({ event }) => {
     }
 
     return(
-        <Card prefix={renderPrefix()} title={event.title} subtitle={event.subtitle} description={event.description} />
+        <Card className={styles.eventCard} prefix={renderPrefix()} title={event.title} subtitle={event.subtitle} description={event.description} />
     )
 }
 

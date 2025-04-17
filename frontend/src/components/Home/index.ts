@@ -1,0 +1,1 @@
+export {default as HomePanel} from '@components/Home/HomePanel/HomePanel.tsx';

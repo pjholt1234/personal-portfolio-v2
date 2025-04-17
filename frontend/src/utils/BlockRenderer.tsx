@@ -1,12 +1,6 @@
-import {BlockTypes} from "@/enums/BlockTypes";
+import { BlockTypes } from "@enums";
 import {FC} from "react";
-import Text from "@components/shared-ui/Blocks/Text/Text";
-import Card from "@components/shared-ui/Card/Card";
-import AnimatedCard from "@components/shared-ui/AnimatedCard/AnimatedCard";
-import Snippet from "@components/shared-ui/Blocks/Snippet/Snippet";
-import Image from "@components/shared-ui/Blocks/Image/Image";
-import Set from "@components/shared-ui/Blocks/Set/Set";
-import Gallery from "@components/shared-ui/Blocks/Gallery/Gallery";
+import { Text, Card, AnimatedCard, Snippet, Image, Set, Gallery } from "@shared-ui";
 
 interface BlockRendererProps {
     blocks: Block[]

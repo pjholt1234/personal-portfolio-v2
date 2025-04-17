@@ -1,9 +1,9 @@
 import styles from './Navigation.module.scss';
-import Typography from "@components/shared-ui/Typography/Typography";
-import {FC} from "react";
-import {usePanel} from "@/hooks/PanelContext";
-import {mergeClassNames} from "@helpers";
-import {getBlocks, getEvents, getProjects} from "@/api";
+import { Typography } from "@shared-ui";
+import { FC } from "react";
+import { usePanel } from "@/hooks/PanelContext";
+import { mergeClassNames } from "@helpers";
+import { getBlocks, getEvents, getProjects } from "@/api";
 
 interface NavigationItemProps {
     title: string;

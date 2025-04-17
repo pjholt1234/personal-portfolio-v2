@@ -13,7 +13,15 @@
       "@assets/*": ["src/assets/*"],
       "@helpers": ["src/helpers.ts"],
       "@types": ["src/types.d.ts"],
-      "@utils/*": ["src/utils/*"],
+      "@utils": ["src/utils/index.ts"],
+      "@hooks": ["src/hooks/*"],
+      "@enums": ["src/enums/index.ts"],
+      "@api": ["src/api.ts"],
+      "@global": ["src/components/Global/index.ts"],
+      "@shared-ui": ["src/components/shared-ui/index.ts"],
+      "@projects": ["src/components/Projects/index.ts"],
+      "@events": ["src/components/Events/index.ts"],
+      "@home": ["src/components/Home/index.ts"],
     }
   },
   "include": [

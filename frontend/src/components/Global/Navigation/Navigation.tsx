@@ -1,5 +1,5 @@
 import styles from './Navigation.module.scss';
-import NavigationItem from "@components/home/Navigation/NavigationItem";
+import { NavigationItem } from "@global";
 
 const Navigation = () => {
     return (
