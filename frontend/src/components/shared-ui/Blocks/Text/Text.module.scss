@@ -1,4 +1,29 @@
-.text {
-  display: flex;
+p {
+
+}
+
+strong {
+
+}
+
+em {
+
+}
+
+span[style="text-decoration: underline;"] {
+  color: $tertiary;
+  text-decoration: none !important;
+}
+
+a {
+  color: $tertiary;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+blockquote {
+  color: $secondary;
 }
 

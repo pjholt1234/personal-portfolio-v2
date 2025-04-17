@@ -1,5 +1,6 @@
 let eventsCache: { data: any[], timestamp: number } | null = null;
 let projectsCache: { data: any[], timestamp: number } | null = null;
+let blocksCache: { [key: string]: { data: any, timestamp: number } } = {};
 
 const CACHE_DURATION = parseInt(import.meta.env.VITE_CACHE_DURATION, 10);
 
@@ -37,12 +38,25 @@ const getProjects = async () => {
     }
 }
 
-const getBlocks = async (pageType: string, pageSlug: string) => {
+const getBlocks = async (modelType: string, pageSlug: string, enableCache: boolean = false) => {
+    const cacheKey = `${modelType}-${pageSlug}`;
+    const now = Date.now();
+
+    if (enableCache && blocksCache[cacheKey] && (now - blocksCache[cacheKey].timestamp < CACHE_DURATION)) {
+        return blocksCache[cacheKey]?.data;
+    }
+
     try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${pageType}/${pageSlug}/blocks`);
-        return await response.json();
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${modelType}/${pageSlug}/blocks`);
+        const data = await response.json();
+
+        if (enableCache) {
+            blocksCache[cacheKey] = { data, timestamp: now };
+        }
+
+        return data;
     } catch (error) {
-        console.error('Error fetching projects:', error);
+        console.error('Error fetching blocks:', error);
         throw error;
     }
 }

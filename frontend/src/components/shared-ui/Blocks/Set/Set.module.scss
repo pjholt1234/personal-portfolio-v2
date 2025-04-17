@@ -5,6 +5,17 @@
     width: 100%;
 
     &--item {
-        color: white;
+        color: $secondary;
+    }
+}
+
+.set__pills {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+
+    &--item {
+
     }
 }

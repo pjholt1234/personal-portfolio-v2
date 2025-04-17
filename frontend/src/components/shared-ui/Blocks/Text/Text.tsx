@@ -2,11 +2,15 @@ import styles from './Text.module.scss';
 import {FC} from "react";
 
 interface TextProps extends Block {
-    content?: string;
+    content?: TrustedHTML;
 }
 
 const Text: FC<TextProps> = ({ content }) => {
-    return <p className={styles.text}>{content}</p>;
+    if(!content) {
+        return null;
+    }
+
+    return <div className={styles.text} dangerouslySetInnerHTML={{__html: content}}></div>;
 };
 
 export default Text;

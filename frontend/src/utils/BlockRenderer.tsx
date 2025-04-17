@@ -25,7 +25,7 @@ const BlockRenderer:FC<BlockRendererProps> = ({ blocks, isVisible = true }) => {
             case BlockTypes.SNIPPET:
                 return <Snippet eyebrow={block.eyebrow} type={block.type} content={block.content} />;
             case BlockTypes.SET:
-                return <Set eyebrow={block.eyebrow} type={block.type} set={block.set} />;
+                return <Set eyebrow={block.eyebrow} type={block.type} set={block.set} pills={block.pills}/>;
             case BlockTypes.IMAGE:
                 return <Image eyebrow={block.eyebrow} type={block.type} image={block.image} />;
             case BlockTypes.GALLERY:

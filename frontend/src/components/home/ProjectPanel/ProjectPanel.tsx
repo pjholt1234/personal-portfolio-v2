@@ -84,6 +84,7 @@ const ProjectPanel = () => {
 
     return (
         <>
+            <h1>Projects</h1>
             <Filters filterState={filter} filters={allFilters} setFilter={setFilter} />
             <div className={styles['project-panel--cards']}>
                 {filteredProjects?.length > 0 ? (

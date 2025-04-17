@@ -4,6 +4,7 @@ namespace App\Filament\Blocks;
 
 use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 
@@ -17,6 +18,11 @@ class Set extends AbstractBlock {
     public function getBlockSchema(): array
     {
         return [
+            Checkbox::make('pills')
+                ->label('Pills')
+                ->helperText('Use pills instead of bullet points')
+                ->default(false)
+                ->columnSpan(2),
             Repeater::make('set')
                 ->label('Set')
                 ->schema([
@@ -41,6 +47,7 @@ class Set extends AbstractBlock {
             'type' => $blockContent['type'],
             'eyebrow' => $this->getField($blockData, 'eyebrow'),
             'set' => $this->getSetField($blockData),
+            'pills' => $this->getField($blockData, 'pills'),
         ];
     }
 

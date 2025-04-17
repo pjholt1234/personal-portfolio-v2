@@ -4,6 +4,7 @@ namespace App\Filament\Blocks;
 
 use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 
 
@@ -16,7 +17,15 @@ class Text extends AbstractBlock {
     public function getBlockSchema(): array
     {
         return [
-            Textarea::make('content')
+            RichEditor::make('content')
+                ->toolbarButtons([
+                    'blockquote',
+                    'bold',
+                    'italic',
+                    'link',
+                    'strike',
+                    'underline',
+                ])
                 ->label('Text')
                 ->required(),
         ];

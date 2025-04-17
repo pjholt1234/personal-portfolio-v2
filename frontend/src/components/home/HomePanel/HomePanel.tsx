@@ -23,12 +23,11 @@ const HomePanel: FC<HomePanelProps> = ({}) => {
 
     useEffect(() => {}, [blocks]);
     return (
-        <>
-            <h1>Home</h1>
+        <div className={styles['home-panel']}>
             <div className={styles['home-panel--cards']}>
                 <BlockRenderer blocks={blocks} isVisible={isVisible} />
             </div>
-        </>
+        </div>
     );
 };
 

@@ -3,7 +3,7 @@ import Typography from "@components/shared-ui/Typography/Typography";
 import {FC} from "react";
 import {usePanel} from "@/hooks/PanelContext";
 import {mergeClassNames} from "@helpers";
-import {getEvents, getProjects} from "@/api";
+import {getBlocks, getEvents, getProjects} from "@/api";
 
 interface NavigationItemProps {
     title: string;
@@ -16,11 +16,18 @@ const NavigationItem:FC<NavigationItemProps> = ({ title, location }) => {
 
     const handleMouseEnter = () => {
         if (location === "projects") {
-            getProjects().catch((error) => console.error("Error prefetching projects:", error));
+            getProjects()
+                .catch((error) => console.error("Error prefetching projects:", error));
         }
 
         if (location === "experience") {
-            getEvents().catch((error) => console.error("Error prefetching events:", error));
+            getEvents()
+                .catch((error) => console.error("Error prefetching events:", error));
+        }
+
+        if (location === "home") {
+            getBlocks("page", "home", true)
+                .catch((error) => console.error("Error prefetching home blocks:", error));
         }
     };
 
