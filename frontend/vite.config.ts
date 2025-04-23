@@ -22,6 +22,7 @@ export default defineConfig({
       '@projects': fileURLToPath(new URL('./src/components/Projects/index.ts', import.meta.url)),
       '@events': fileURLToPath(new URL('./src/components/Events/index.ts', import.meta.url)),
       '@home': fileURLToPath(new URL('./src/components/Home/index.ts', import.meta.url)),
+      '@project': fileURLToPath(new URL('./src/components/Project/index.ts', import.meta.url)),
     },
   },
   css: {

@@ -1,18 +1,1 @@
-.home-panel {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.home-panel--cards {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-height: 100%;
-  scrollbar-width: none;
-  overflow-y: auto;
-  padding: 2rem 0;
-}
+.home-panel {}

@@ -1,0 +1,18 @@
+.heading {
+  text-decoration: none !important;
+  display: flex;
+  margin: 0;
+  transition: color 0.3s ease;
+
+  &__icon {
+    transition: transform 0.3s ease-out;
+  }
+
+  &:hover {
+    color: $tertiary;
+  }
+
+  &:hover .heading__icon {
+    transform: translate(5px, -5px);
+  }
+}

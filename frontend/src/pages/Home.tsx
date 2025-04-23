@@ -1,12 +1,12 @@
-import { LeftContent, RightContent, PageLayout } from "@global";
-import { PanelProvider } from "@/hooks/PanelContext";
+import { PageLayout } from "@global";
+import { HomeContent } from "@home";
 
 const Home = () => {
     return (
-        <PanelProvider>
-            <PageLayout leftContent={<LeftContent />} rightContent={<RightContent />} />
-        </PanelProvider>
-    );
+        <PageLayout>
+            <HomeContent />
+        </PageLayout>
+    )
 }
 
 export default Home;

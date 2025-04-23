@@ -22,6 +22,7 @@
       "@projects": ["src/components/Projects/index.ts"],
       "@events": ["src/components/Events/index.ts"],
       "@home": ["src/components/Home/index.ts"],
+      "@project": ["src/components/Project/index.ts"],
     }
   },
   "include": [

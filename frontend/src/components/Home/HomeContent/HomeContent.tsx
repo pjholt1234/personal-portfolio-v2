@@ -1,32 +1,32 @@
 import { FC } from "react";
 import {mergeClassNames} from "@helpers";
-import styles from "./RightContent.module.scss";
-import {usePanel} from "@/hooks/PanelContext";
+import styles from "./HomeContent.module.scss";
 import { ProjectPanel } from "@projects";
 import { AnimatedPanel } from "@shared-ui";
 import { ExperiencePanel } from "@events";
 import { HomePanel } from "@home";
+import {useLocation} from "react-router-dom";
 
-interface RightContentProps {
+interface HomeContentProps {
     className?: string;
 }
 
-const RightContent: FC<RightContentProps> = ({ className }) => {
-    const { currentPanel } = usePanel();
+const HomeContent: FC<HomeContentProps> = ({ className }) => {
+    const { pathname } = useLocation();
 
     return (
         <div className={mergeClassNames(className, styles.content)}>
-            <AnimatedPanel isVisible={currentPanel === "home"}>
+            <AnimatedPanel isVisible={pathname === "/"}>
                 <HomePanel />
             </AnimatedPanel>
-            <AnimatedPanel isVisible={currentPanel === "projects"}>
+            <AnimatedPanel isVisible={pathname.includes( "projects")}>
                 <ProjectPanel />
             </AnimatedPanel>
-            <AnimatedPanel isVisible={currentPanel === "experience"}>
+            <AnimatedPanel isVisible={pathname.includes( "experience")}>
                 <ExperiencePanel />
             </AnimatedPanel>
         </div>
     );
 };
 
-export default RightContent;
+export default HomeContent;

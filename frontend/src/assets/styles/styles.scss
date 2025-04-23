@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+
+// Component styles
+@import 'HeadedLayout';
+
 body, html, #root {
   box-sizing: border-box;
   margin: 0;
@@ -40,3 +44,4 @@ h4 {
 p {
   color: $secondary;
 }
+

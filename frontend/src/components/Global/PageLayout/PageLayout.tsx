@@ -1,22 +1,25 @@
 import {FC, ReactNode} from "react";
 import styles from './PageLayout.module.scss'
 import { mergeClassNames } from "@helpers";
+import {LeftContent} from "@components/Global";
 
 
 interface PageLayoutProps {
-    leftContent: ReactNode;
-    rightContent: ReactNode;
+    children: ReactNode;
 }
 
 
 const PageLayout: FC<PageLayoutProps> = ({
-    leftContent,
-    rightContent
+    children
 }) => {
     return (
         <div className={styles.layout}>
-            <div className={mergeClassNames(styles.column, styles.column__left)}>{leftContent}</div>
-            <div className={mergeClassNames(styles.column, styles.column__right)}>{rightContent}</div>
+            <div className={mergeClassNames(styles.column, styles.column__left)}>
+                <LeftContent />
+            </div>
+            <div className={mergeClassNames(styles.column, styles.column__right)}>
+                {children}
+            </div>
         </div>
     )
 }

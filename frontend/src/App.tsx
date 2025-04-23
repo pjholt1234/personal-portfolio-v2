@@ -1,15 +1,14 @@
-import { Route } from "wouter";
-import Home from "@pages/Home.tsx";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./AppRoutes";
 import { Background } from "@global";
 
 const App = () => {
-  return (
-    <>
-        <Background />
+    return (
+        <BrowserRouter>
+            <Background />
+            <AppRoutes />
+        </BrowserRouter>
+    );
+};
 
-        <Route path="/" component={() => <Home />} />
-    </>
-  )
-}
-
-export default App
+export default App;

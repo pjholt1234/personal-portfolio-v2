@@ -12,6 +12,7 @@ interface Filter {
 
 interface Project {
     id: number;
+    slug: string;
     title: string;
     subtitle: string;
     description: string;
@@ -22,11 +23,13 @@ interface Project {
     start_date: string;
     end_date: string;
     technologies: string[];
+    blocks: Block[];
 }
 
 interface CareerEvent {
     id: number;
     title: string;
+    slug: string;
     subtitle: string;
     type: 'EDUCATION' | 'PROFESSIONAL';
     start_date: string;
@@ -34,6 +37,7 @@ interface CareerEvent {
     description: string;
     description_long?: string;
     icon?: string;
+    blocks: Block[];
 }
 
 interface Block {
@@ -45,4 +49,9 @@ interface Image {
     image_url: string;
     alt: string;
     description?: string;
+}
+
+declare module '*.module.scss' {
+    const classes: { [key: string]: string };
+    export default classes;
 }

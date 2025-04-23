@@ -1,15 +1,14 @@
 import {FC} from "react";
 import styles from './ProjectCard.module.scss';
-import {formatDateTime} from "@helpers";
-import { Pill, Card } from "@shared-ui";
+import {formatDateTime, preloadProject } from "@helpers";
+import { Pill, Card, CardHeading, PrefetchLink } from "@shared-ui";
+import {getProject} from "@api";
 
 interface ProjectCard {
     project: Project;
 }
 
-const ProjectCard: FC<ProjectCard> = ({
-    project
-}) => {
+const ProjectCard: FC<ProjectCard> = ({ project }) => {
 
     const renderPrefix = () => {
         let startDate = 'Unknown';
@@ -38,8 +37,27 @@ const ProjectCard: FC<ProjectCard> = ({
         )
     }
 
+    const renderTitle = () => {
+        return (
+            <PrefetchLink
+                to={`/projects/${project.slug}`}
+                onHover={() => {
+                    preloadProject();
+                    getProject(project.slug);
+                }}
+            >
+                <CardHeading title={project.title} subtitle={project.subtitle} />
+            </PrefetchLink>
+        );
+    }
 
-    return <Card prefix={renderPrefix()} title={project.title} description={project.description} footer={renderFooter()} />
+
+    return <Card
+        prefix={renderPrefix()}
+        title={renderTitle()}
+        description={project.description}
+        footer={renderFooter()}
+    />;
 }
 
 export default ProjectCard;

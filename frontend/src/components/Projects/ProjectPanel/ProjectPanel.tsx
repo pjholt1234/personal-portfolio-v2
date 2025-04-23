@@ -3,14 +3,16 @@ import {getProjects} from "@api";
 import styles from "./ProjectPanel.module.scss";
 import { ProjectCard } from "@projects";
 import { AnimatedCard, Filters } from "@shared-ui";
-import { usePanel } from "@/hooks/PanelContext";
+import {useLocation} from "react-router-dom";
 
 const ProjectPanel = () => {
+    const { pathname } = useLocation();
+
     const [projects, setProjects] = useState<Project[]>([]);
     const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
     const [filter, setFilter] = useState({ type: "", title: "" });
-    const { currentPanel } = usePanel();
-    const isVisible = currentPanel === "projects";
+
+    const isVisible = pathname === "/projects";
 
     const allFilters: Filter[] = [
         {
@@ -82,10 +84,12 @@ const ProjectPanel = () => {
     }, [filter, projects]);
 
     return (
-        <>
-            <h1>Projects</h1>
-            <Filters filterState={filter} filters={allFilters} setFilter={setFilter} />
-            <div className={styles['project-panel--cards']}>
+        <div className="headed-layout">
+            <div className="headed-layout--header">
+                <h1>Projects</h1>
+                <Filters filterState={filter} filters={allFilters} setFilter={setFilter} />
+            </div>
+            <div className="headed-layout--content">
                 {filteredProjects?.length > 0 ? (
                     filteredProjects?.map((project, index: number) => (
                         <AnimatedCard key={index} index={index} isVisible={isVisible}>
@@ -96,7 +100,7 @@ const ProjectPanel = () => {
                     <p>No projects found.</p>
                 )}
             </div>
-        </>
+        </div>
     );
 }
 

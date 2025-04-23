@@ -12,12 +12,6 @@
     align-items: center;
   }
 
-  &__title {
-    width: 60%;
-    margin: 0;
-    transition: color 0.3s ease;
-  }
-
   &__description {
     margin: 0;
     margin-bottom: 10px;
@@ -46,23 +40,12 @@
     background-color: transparent;
   }
 
-  &__link {
-    transition: transform 2s ease-out;
-  }
-
   &:hover .card__hover-effect {
     background-color: rgba(31, 41, 55, 0.5);
     box-shadow: inset 0 1px 0 0 rgba(148, 163, 184, 0.1);
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
   }
 
-  &:hover .card__title {
-    color: $tertiary;
-  }
-
-  &:hover .card__link {
-    transform: translate(5px, -5px);
-  }
 
   &__description {
     margin-top: 1rem;

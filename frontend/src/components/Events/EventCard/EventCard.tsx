@@ -2,6 +2,7 @@ import { Card } from "@shared-ui";
 import { FC } from "react";
 import { formatDateTime } from "@helpers";
 import styles from './EventCard.module.scss';
+import CardHeading from "@components/shared-ui/CardHeading/CardHeading";
 
 interface EventCard {
     event: CareerEvent;
@@ -23,8 +24,12 @@ const EventCard: FC<EventCard> = ({ event }) => {
         return `${startDate} - ${endDate}`;
     }
 
+    const renderTitle = () => {
+        return <CardHeading title={event.title} subtitle={event.subtitle} link={`/events/${event.slug}`} />;
+    }
+
     return(
-        <Card className={styles.eventCard} prefix={renderPrefix()} title={event.title} subtitle={event.subtitle} description={event.description} />
+        <Card className={styles.eventCard} prefix={renderPrefix()} title={renderTitle()} description={event.description} />
     )
 }
 

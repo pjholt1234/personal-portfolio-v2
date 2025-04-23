@@ -6,9 +6,9 @@ const Navigation = () => {
         <div>
             <nav className={styles.nav}>
                 <ul className={styles.nav__items}>
-                    <NavigationItem title="Home" location="home" />
-                    <NavigationItem title="Experience" location="experience" />
-                    <NavigationItem title="Projects" location="projects" />
+                    <NavigationItem title="Home" location="/" />
+                    <NavigationItem title="Experience" location="/experience" />
+                    <NavigationItem title="Projects" location="/projects" />
                 </ul>
             </nav>
         </div>

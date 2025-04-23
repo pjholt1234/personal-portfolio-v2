@@ -9,7 +9,10 @@ const formatDateTime = (date: string): string => {
     });
 }
 
+const preloadProject = () => import('./pages/Project');
+
 export {
     mergeClassNames,
-    formatDateTime
+    formatDateTime,
+    preloadProject
 }

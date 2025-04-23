@@ -1,9 +1,9 @@
 import styles from './Navigation.module.scss';
 import { Typography } from "@shared-ui";
 import { FC } from "react";
-import { usePanel } from "@/hooks/PanelContext";
 import { mergeClassNames } from "@helpers";
 import { getBlocks, getEvents, getProjects } from "@/api";
+import {useLocation, useNavigate} from "react-router-dom";
 
 interface NavigationItemProps {
     title: string;
@@ -11,21 +11,26 @@ interface NavigationItemProps {
 }
 
 const NavigationItem:FC<NavigationItemProps> = ({ title, location }) => {
-    const {currentPanel, setCurrentPanel} = usePanel();
-    const isActive = location === currentPanel;
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
+
+    let isActive = pathname.includes(location);
+    if(location === "/") {
+        isActive = pathname === "/";
+    }
 
     const handleMouseEnter = () => {
-        if (location === "projects") {
+        if (location === "/projects") {
             getProjects()
                 .catch((error) => console.error("Error prefetching projects:", error));
         }
 
-        if (location === "experience") {
+        if (location === "/experience") {
             getEvents()
                 .catch((error) => console.error("Error prefetching events:", error));
         }
 
-        if (location === "home") {
+        if (location === "/") {
             getBlocks("page", "home", true)
                 .catch((error) => console.error("Error prefetching home blocks:", error));
         }
@@ -42,7 +47,7 @@ const NavigationItem:FC<NavigationItemProps> = ({ title, location }) => {
                     styles['nav-item__button'],
                     isActive ? styles['nav-item__button--active'] : ""
                 )}
-                onClick={() => setCurrentPanel(location)}
+                onClick={() => navigate(location)}
             >
                 <Typography component="h3" className={isActive ? styles.active : ""}>
                     {title}

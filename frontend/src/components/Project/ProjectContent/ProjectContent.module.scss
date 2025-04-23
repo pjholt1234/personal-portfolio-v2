@@ -1,0 +1,27 @@
+.header {
+  &--title {
+    margin-bottom: 0 !important;
+  }
+
+  &--subtitle-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &--subtitle {
+    color: $secondary;
+  }
+
+  &--date {
+    margin-left: auto;
+    margin-right: 5rem;
+    color: $secondary;
+  }
+}
+
+.technologies {
+  display: flex;
+  margin-top: 1rem;
+}

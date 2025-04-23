@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { getEvents } from "@api";
 import { AnimatedCard } from "@shared-ui";
-import { usePanel } from "@/hooks/PanelContext";
 import { EventCard } from "@events";
-import styles from "./ExperiencePanel.module.scss";
+import {useLocation} from "react-router-dom";
 
 const ExperiencePanel = () => {
+    const { pathname } = useLocation();
+
     const [events, setEvents] = useState<CareerEvent[]>([]);
-    const { currentPanel } = usePanel();
-    const isVisible = currentPanel === "experience";
+
+    const isVisible = pathname === "/experience";
 
 
     useEffect(() => {
@@ -20,9 +21,11 @@ const ExperiencePanel = () => {
     }, []);
 
     return (
-        <>
-            <h1>Experience</h1>
-            <div className={styles['experience-panel--cards']}>
+        <div className="headed-layout">
+            <div className="headed-layout--header">
+                <h1>Experience</h1>
+            </div>
+            <div className="headed-layout--content">
                 {events?.length > 0 ? (
                     events?.map((event: CareerEvent, index: number) => (
                         <AnimatedCard key={event.id} index={index} isVisible={isVisible}>
@@ -33,7 +36,7 @@ const ExperiencePanel = () => {
                     <p>No events found.</p>
                 )}
             </div>
-        </>
+        </div>
     )
 }
 

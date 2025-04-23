@@ -10,3 +10,5 @@ export { default as Filters } from './Filters/Filters';
 export { default as Pill } from './Pill/Pill';
 export { default as Select } from './Select/Select';
 export { default as Typography } from './Typography/Typography';
+export { default as CardHeading } from './CardHeading/CardHeading';
+export { default as PrefetchLink } from './PrefetchLink/PrefetchLink';

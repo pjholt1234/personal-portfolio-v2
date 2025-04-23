@@ -1,17 +1,16 @@
 import {FC, useEffect, useState} from "react";
 import { getBlocks } from "@api"
 import { BlockRenderer } from "@utils";
-import {usePanel} from "@/hooks/PanelContext";
-import styles from "./HomePanel.module.scss";
+import {useLocation} from "react-router-dom";
 
-interface HomePanelProps {
-
-}
+interface HomePanelProps {}
 
 const HomePanel: FC<HomePanelProps> = ({}) => {
+    const { pathname } = useLocation();
+
     const [blocks, setBlocks] = useState<Block[]>([]);
-    const { currentPanel } = usePanel();
-    const isVisible = currentPanel === "home";
+
+    const isVisible = pathname === "/";
 
     useEffect(() => {
         getBlocks("page", "home")
@@ -22,9 +21,10 @@ const HomePanel: FC<HomePanelProps> = ({}) => {
     }, []);
 
     useEffect(() => {}, [blocks]);
+
     return (
-        <div className={styles['home-panel']}>
-            <div className={styles['home-panel--cards']}>
+        <div className="headed-layout">
+            <div className="headed-layout--content">
                 <BlockRenderer blocks={blocks} isVisible={isVisible} />
             </div>
         </div>
