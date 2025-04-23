@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProjectResource extends JsonResource
+class EventResource extends JsonResource
 {
     use HasBlocks;
     /**
@@ -15,17 +15,16 @@ class ProjectResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $data = [
+        $data =  [
+            'id' => $this->id,
             'title' => $this->title,
             'slug' => $this->slug,
-            'subtitle' => $this->subtitle,
             'type' => $this->type,
             'icon' => $this->icon,
             'description' => $this->description,
             'description_long' => $this->description_long,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
-            'technologies' => $this->technologies->pluck('name')->toArray(),
         ];
 
         return $this->addBlocksWhenRequested($data);

@@ -13,4 +13,11 @@ class ProjectController extends Controller
         $projects = Project::all();
         return ProjectResource::collection($projects)->response();
     }
+
+    public function show(Project $project): JsonResponse
+    {
+        return (new ProjectResource($project))
+            ->withBlocks()
+            ->response();
+    }
 }

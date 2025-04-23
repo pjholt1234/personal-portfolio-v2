@@ -19,7 +19,7 @@ class BlockManagerService
         return $blockSchema;
     }
 
-    public function blocksApi(array $content): array
+    public function blocksApi(?array $content = []): array
     {
         if(empty($content)) {
             return [];
