@@ -7,7 +7,9 @@ use App\Exceptions\BlockContentException;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
-
+use App\Models\Event;
+use App\Models\Page;
+use App\Models\Project;
 
 class Set extends AbstractBlock {
     public function __construct()
@@ -38,7 +40,7 @@ class Set extends AbstractBlock {
     /**
      * @throws BlockContentException
      */
-    public function getResource(array $blockContent): array
+    public function getResource(Page|Project|Event $model, array $blockContent): array
     {
         $this->validateBlockContent($blockContent);
         $blockData = $blockContent['data'];

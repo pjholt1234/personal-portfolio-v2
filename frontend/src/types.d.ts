@@ -24,6 +24,8 @@ interface Project {
     end_date: string;
     technologies: string[];
     blocks: Block[];
+    github_link: string;
+    hidden: boolean;
 }
 
 interface CareerEvent {

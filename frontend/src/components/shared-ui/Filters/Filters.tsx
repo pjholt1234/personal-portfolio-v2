@@ -2,6 +2,7 @@ import { FC } from "react";
 import styles from "./Filters.module.scss";
 import { Select } from "@shared-ui";
 import DatePicker from "react-datepicker";
+// @ts-ignore
 import "react-datepicker/dist/react-datepicker.css";
 import { mergeClassNames } from "@/helpers";
 

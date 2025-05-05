@@ -26,6 +26,7 @@ class TechnologyResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->unique()
                     ->required(),
                 FileUpload::make('image_url')
                     ->image(),

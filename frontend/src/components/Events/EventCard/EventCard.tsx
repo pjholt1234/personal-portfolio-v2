@@ -1,8 +1,9 @@
-import { Card } from "@shared-ui";
+import {Card, PrefetchLink} from "@shared-ui";
 import { FC } from "react";
-import { formatDateTime } from "@helpers";
+import {formatDateTime, preloadEvent} from "@helpers";
 import styles from './EventCard.module.scss';
 import CardHeading from "@components/shared-ui/CardHeading/CardHeading";
+import {getEvent} from "@api";
 
 interface EventCard {
     event: CareerEvent;
@@ -25,7 +26,17 @@ const EventCard: FC<EventCard> = ({ event }) => {
     }
 
     const renderTitle = () => {
-        return <CardHeading title={event.title} subtitle={event.subtitle} link={`/events/${event.slug}`} />;
+        return (
+            <PrefetchLink
+                to={`/experience/${event.slug}`}
+                onHover={() => {
+                    preloadEvent();
+                    getEvent(event.slug);
+                }}
+            >
+                <CardHeading title={event.title} subtitle={event.subtitle} />
+            </PrefetchLink>
+        );
     }
 
     return(

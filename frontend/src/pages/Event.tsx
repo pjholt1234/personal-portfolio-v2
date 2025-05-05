@@ -1,18 +1,40 @@
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import {useParams} from "react-router-dom";
+import {getEvent} from "@api";
+import {PageLayout} from "@global";
+import {EventContent} from "@event";
 
 interface EventProps {
 }
 
 const Event: FC<EventProps> = () => {
-    let params = useParams();
+    let { slug } = useParams();
+    const [event, setEvent] = useState<CareerEvent | null>(null);
 
-    console.log(params);
+
+    if(!slug) {
+        return <div>Project not found</div>;
+    }
+
+    useEffect(() => {
+        getEvent(slug)
+            .then((data) => {
+                setEvent(data.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching project:', error);
+            });
+    }, []);
+
+    if (!event) {
+        return <div>Loading...</div>;
+    }
+
+
     return (
-        <div>
-            <h1>Event Page</h1>
-            <p>This is the event page.</p>
-        </div>
+        <PageLayout>
+            <EventContent event={event} />
+        </PageLayout>
     );
 };
 

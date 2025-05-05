@@ -1,13 +1,14 @@
 .header {
   &--title {
-    margin-bottom: 0 !important;
+    margin: 0 !important;
   }
 
-  &--subtitle-container {
+  &--container {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
+    width: 100%;
   }
 
   &--subtitle {
@@ -24,4 +25,15 @@
 .technologies {
   display: flex;
   margin-top: 1rem;
+}
+
+.github-link {
+  color: #63748d;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 5rem;
+
+  &:hover {
+    color: $tertiary;
+  }
 }

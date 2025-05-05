@@ -6,9 +6,10 @@ use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-
+use App\Models\Event;
+use App\Models\Page;
+use App\Models\Project;
 
 class Gallery extends AbstractBlock {
     public function __construct()
@@ -44,7 +45,7 @@ class Gallery extends AbstractBlock {
     /**
      * @throws BlockContentException
      */
-    public function getResource(array $blockContent): array
+    public function getResource(Page|Project|Event $model, array $blockContent): array
     {
         $this->validateBlockContent($blockContent);
         $blockData = $blockContent['data'];

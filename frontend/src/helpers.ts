@@ -11,8 +11,11 @@ const formatDateTime = (date: string): string => {
 
 const preloadProject = () => import('./pages/Project');
 
+const preloadEvent = () => import('./pages/Event');
+
 export {
     mergeClassNames,
     formatDateTime,
-    preloadProject
+    preloadProject,
+    preloadEvent
 }

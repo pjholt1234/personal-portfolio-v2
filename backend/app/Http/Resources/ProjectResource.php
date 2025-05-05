@@ -26,8 +26,21 @@ class ProjectResource extends JsonResource
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'technologies' => $this->technologies->pluck('name')->toArray(),
+            'github_link' => $this->github_link,
+            'hidden' => $this->hidden,
+            //'media' => $this->getMedia($this->media),
         ];
 
         return $this->addBlocksWhenRequested($data);
+    }
+
+    private function getMedia(array $media){
+        return $media?->map(function ($media) {
+            return [
+                'display_name' => $media->display_name,
+                'icon' => $media->icon,
+                'media_url' => asset('storage/' . $media->file),
+            ];
+        })->toArray();
     }
 }

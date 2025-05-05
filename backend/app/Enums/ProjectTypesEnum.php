@@ -8,4 +8,5 @@ enum ProjectTypesEnum: string
 
     case PERSONAL = 'Personal';
     case PROFESSIONAL = 'Professional';
+    case ACADEMIC = 'Academic';
 }

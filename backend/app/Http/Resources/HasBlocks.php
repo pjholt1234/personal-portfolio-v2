@@ -24,7 +24,7 @@ trait HasBlocks
         $blockManagerService = app(BlockManagerService::class);
 
         try {
-            $data['blocks'] = $blockManagerService->blocksApi($this->resource->$contentField);
+            $data['blocks'] = $blockManagerService->blocksApi($this->resource);
         } catch (BlockTypeException $e) {
             report($e);
         }

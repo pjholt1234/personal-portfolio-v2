@@ -32,7 +32,7 @@ class BlockController extends Controller
         }
 
         try {
-            $blocks = $blockManagerService->blocksApi($model->content);
+            $blocks = $blockManagerService->blocksApi($model);
         } catch (BlockTypeException $e) {
             report($e);
             return response()->json(['error' => 'Invalid block type.'], 400);

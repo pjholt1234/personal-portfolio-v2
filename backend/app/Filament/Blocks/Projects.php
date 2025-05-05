@@ -4,24 +4,24 @@ namespace App\Filament\Blocks;
 
 use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
-use Filament\Forms\Components\MarkdownEditor;
+use App\Exceptions\BlockTypeException;
+use App\Http\Resources\ProjectResource;
+use Filament\Forms\Components\Placeholder;
 use App\Models\Event;
 use App\Models\Page;
 use App\Models\Project;
 
-class Snippet extends AbstractBlock {
+class Projects extends AbstractBlock {
     public function __construct()
     {
-        parent::__construct(BlockTypesEnum::SNIPPET);
+        parent::__construct(BlockTypesEnum::PROJECTS);
     }
 
     public function getBlockSchema(): array
     {
         return [
-            MarkdownEditor::make('content')
-                ->toolbarButtons([
-                    'codeBlock',
-                ])
+            Placeholder::make('')
+                ->content('Automatically include related projects')
         ];
     }
 
@@ -30,13 +30,18 @@ class Snippet extends AbstractBlock {
      */
     public function getResource(Page|Project|Event $model, array $blockContent): array
     {
+        if(!method_exists($model, 'projects')) {
+            throw new BlockTypeException('Project blocks are not compatible with this model');
+        }
+
         $this->validateBlockContent($blockContent);
+
         $blockData = $blockContent['data'];
 
         return [
             'type' => $blockContent['type'],
             'eyebrow' => $this->getField($blockData, 'eyebrow'),
-            'content' => $this->getField($blockData, 'content'),
+            'projects' => ProjectResource::collection($model->projects),
         ];
     }
 }

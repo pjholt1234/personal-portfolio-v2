@@ -2,11 +2,16 @@
 
 namespace App\Services;
 
+use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockTypeException;
 use App\Filament\Blocks\BlockInterface;
+use App\Models\Event;
+use App\Models\Page;
+use App\Models\Project;
 
 class BlockManagerService
 {
+    private readonly Page|Project|Event $model;
     public function blocks(): array
     {
         $blocks = $this->getBlocks();
@@ -19,16 +24,17 @@ class BlockManagerService
         return $blockSchema;
     }
 
-    public function blocksApi(?array $content = []): array
+    public function blocksApi(Page|Project|Event $model): array
     {
-        if(empty($content)) {
+        $this->model = $model;
+        if(empty($model->content)) {
             return [];
         }
 
         $blocks = $this->getBlocks();
         $blockSchema = [];
 
-        foreach($content as $item){
+        foreach($model->content as $item){
             $blockType = $item['type'] ?? null;
 
             if(!isset($blocks[$blockType])) {
@@ -37,7 +43,7 @@ class BlockManagerService
 
             /* @var BlockInterface $blockClass */
             $blockClass = $blocks[$blockType];
-            $blockSchema[] = $blockClass->getResource($item);
+            $blockSchema[] = $blockClass->getResource($model, $item);
         }
 
         return $blockSchema;

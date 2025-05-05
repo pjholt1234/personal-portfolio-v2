@@ -10,7 +10,10 @@ class ProjectController extends Controller
 {
     public function index(): JsonResponse
     {
-        $projects = Project::all();
+        $projects = Project::query()
+            ->where('hidden', false)
+            ->get();
+
         return ProjectResource::collection($projects)->response();
     }
 

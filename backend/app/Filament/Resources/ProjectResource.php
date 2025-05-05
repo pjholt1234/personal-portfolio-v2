@@ -7,7 +7,10 @@ use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
 use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -41,6 +44,10 @@ class ProjectResource extends Resource
                     ->multiple()
                     ->relationship('technologies', 'name'),
                 TextInput::make('icon'),
+                TextInput::make('github_link')
+                    ->url(),
+                Checkbox::make('hidden')
+                    ->label('Hide from project search'),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
@@ -49,6 +56,16 @@ class ProjectResource extends Resource
                 DatePicker::make('start_date')
                     ->required(),
                 DatePicker::make('end_date'),
+//                Repeater::make('media')
+//                    ->schema([
+//                        TextInput::make('display_name')
+//                            ->url()
+//                            ->required(),
+//                        TextInput::make('icon'),
+//                        FileUpload::make('file')
+//                            ->required(),
+//                    ])
+//                    ->columnSpanFull(),
                 Builder::make('content')
                     ->blocks(self::getBlocks())
                     ->columnSpanFull()

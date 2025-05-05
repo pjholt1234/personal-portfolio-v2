@@ -11,4 +11,5 @@ enum BlockTypesEnum: string
     case SET = 'set';
     case IMAGE = 'image';
     case GALLERY = 'gallery';
+    case PROJECTS = 'projects';
 }

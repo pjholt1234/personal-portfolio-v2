@@ -1,0 +1,25 @@
+.projects {
+
+}
+
+.project {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &--title {
+    margin: 0 !important;
+  }
+
+  &--description {}
+
+  &--link {}
+
+  &--pills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}

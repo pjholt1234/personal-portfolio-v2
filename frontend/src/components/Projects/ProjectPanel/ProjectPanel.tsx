@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {getProjects} from "@api";
-import styles from "./ProjectPanel.module.scss";
 import { ProjectCard } from "@projects";
 import { AnimatedCard, Filters } from "@shared-ui";
 import {useLocation} from "react-router-dom";
@@ -23,6 +22,7 @@ const ProjectPanel = () => {
                 { value: "", label: "All" },
                 { value: "PERSONAL", label: "Personal" },
                 { value: "PROFESSIONAL", label: "Professional" },
+                { value: "ACADEMIC", label: "Academic" },
             ],
         },
         {

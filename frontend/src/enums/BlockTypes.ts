@@ -4,6 +4,7 @@ enum BlockTypes {
     SET = 'SET',
     IMAGE = 'IMAGE',
     GALLERY = 'GALLERY',
+    PROJECTS = 'PROJECTS',
 }
 
 export default BlockTypes;

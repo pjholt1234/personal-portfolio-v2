@@ -12,3 +12,4 @@ export { default as Select } from './Select/Select';
 export { default as Typography } from './Typography/Typography';
 export { default as CardHeading } from './CardHeading/CardHeading';
 export { default as PrefetchLink } from './PrefetchLink/PrefetchLink';
+export { default as Projects } from './Blocks/Projects/Projects';

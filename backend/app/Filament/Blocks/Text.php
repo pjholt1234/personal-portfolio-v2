@@ -5,9 +5,9 @@ namespace App\Filament\Blocks;
 use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Textarea;
-
-
+use App\Models\Event;
+use App\Models\Page;
+use App\Models\Project;
 class Text extends AbstractBlock {
     public function __construct()
     {
@@ -34,7 +34,7 @@ class Text extends AbstractBlock {
     /**
      * @throws BlockContentException
      */
-    public function getResource(array $blockContent): array
+    public function getResource(Page|Project|Event $model, array $blockContent): array
     {
         $this->validateBlockContent($blockContent);
         $blockData = $blockContent['data'];
