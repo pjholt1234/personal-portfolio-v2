@@ -2,7 +2,7 @@ import {FC} from "react";
 import {BlockRenderer} from "@utils";
 import {formatDateTime, mergeClassNames} from "@helpers";
 import styles from "./ProjectContent.module.scss";
-import {Pill, Typography} from "@shared-ui";
+import {Files, Pill, Typography} from "@shared-ui";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 interface ProjectContentProps {
@@ -39,10 +39,10 @@ const ProjectContent: FC<ProjectContentProps> = ({ project }) => {
 
     return (
         <div className="headed-layout">
-            <div className={mergeClassNames("headed-layout--header")}>
-                <div className={styles.header}>
+            <div className={mergeClassNames("headed-layout__header")}>
+                <div>
                     <div className={styles['header--container']}>
-                        <Typography component="h2" className={styles['header--title']}>{project.title}</Typography>
+                        <Typography component="h2" className="headed-layout__header--title">{project.title}</Typography>
                         {project.github_link && (
                             <a className={styles['github-link']} href={project.github_link} target="_blank">
                                 <GitHubIcon fontSize="large" />
@@ -50,10 +50,11 @@ const ProjectContent: FC<ProjectContentProps> = ({ project }) => {
                         )}
                     </div>
                     <div className={styles['header--container']}>
-                        <Typography component="h3" className={styles['header--subtitle']}>{project.subtitle}</Typography>
-                        <Typography component="h3" className={styles['header--date']}>{renderDate()}</Typography>
+                        <Typography component="h3" className="headed-layout__header--subtitle">{project.subtitle}</Typography>
+                        <Typography component="h3" className="headed-layout__header--date" >{renderDate()}</Typography>
                     </div>
                 </div>
+                <Files files={project.files ?? []} />
                 {renderTechnologyPills()}
             </div>
             <div className="headed-layout--content">

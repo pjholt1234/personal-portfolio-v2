@@ -22,7 +22,7 @@ const ExperiencePanel = () => {
 
     return (
         <div className="headed-layout">
-            <div className="headed-layout--header">
+            <div className="headed-layout__header">
                 <h1>Experience</h1>
             </div>
             <div className="headed-layout--content">

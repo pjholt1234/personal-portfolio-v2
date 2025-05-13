@@ -2,7 +2,7 @@ import {FC} from "react";
 import {BlockRenderer} from "@utils";
 import {formatDateTime, mergeClassNames} from "@helpers";
 import styles from "./EventContent.module.scss";
-import {Typography} from "@shared-ui";
+import {Files, Typography} from "@shared-ui";
 
 interface EventContentProps {
     event: CareerEvent;
@@ -26,15 +26,16 @@ const EventContent: FC<EventContentProps> = ({ event }) => {
 
     return (
         <div className="headed-layout">
-            <div className={mergeClassNames("headed-layout--header")}>
-                <div className={styles.header}>
-                    <Typography component="h2" className={styles['header--title']}>
+            <div className={mergeClassNames("headed-layout__header")}>
+                <div>
+                    <Typography component="h2" className="headed-layout__header--title">
                         {event.title}
                     </Typography>
-                    <div className={styles['header--subtitle-container']}>
-                        <Typography component="h3" className={styles['header--subtitle']}>{event.subtitle}</Typography>
-                        <Typography component="h3" className={styles['header--date']}>{renderDate()}</Typography>
+                    <div className="headed-layout__header--subtitle-container">
+                        <Typography component="h3" className="headed-layout__header--subtitle">{event.subtitle}</Typography>
+                        <Typography component="h3" className="headed-layout__header--date" >{renderDate()}</Typography>
                     </div>
+                    <Files files={event.files ?? []} />
                 </div>
             </div>
             <div className="headed-layout--content">

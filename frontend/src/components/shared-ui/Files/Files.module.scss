@@ -1,0 +1,15 @@
+.files {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &--item {
+    display: flex;
+    justify-items: center;
+    color: $secondary !important;
+
+    &:hover {
+      color: $tertiary !important;
+    }
+  }
+}

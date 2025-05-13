@@ -85,7 +85,7 @@ const ProjectPanel = () => {
 
     return (
         <div className="headed-layout">
-            <div className="headed-layout--header">
+            <div className="headed-layout__header">
                 <h1>Projects</h1>
                 <Filters filterState={filter} filters={allFilters} setFilter={setFilter} />
             </div>

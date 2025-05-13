@@ -5,10 +5,25 @@
   height: 100%;
   overflow: hidden;
 
-  &--header {
+  &__header {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+
+    &--title {
+    }
+
+    &--subtitle {
+    }
+
+    &--date {
+      margin-right: 0;
+      margin-left: auto;
+    }
+
+    &--subtitle-container {
+      display: flex;
+    }
   }
 
   &--content{

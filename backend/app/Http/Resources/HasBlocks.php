@@ -15,7 +15,7 @@ trait HasBlocks
         return $this;
     }
 
-    protected function addBlocksWhenRequested(array $data, string $contentField = 'content'): array
+    protected function addBlocksWhenRequested(array $data): array
     {
         if (!$this->withBlocks) {
             return $data;

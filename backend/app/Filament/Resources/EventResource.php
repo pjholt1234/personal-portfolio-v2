@@ -6,6 +6,8 @@ use App\Enums\EventTypesEnum;
 use App\Filament\Resources\EventResource\Pages;
 use App\Filament\Resources\EventResource\RelationManagers;
 use App\Models\Event;
+use App\Models\File;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -13,7 +15,9 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -51,15 +55,9 @@ class EventResource extends Resource
                 DatePicker::make('start_date')
                     ->required(),
                 DatePicker::make('end_date'),
-                Repeater::make('media')
-                    ->schema([
-                        TextInput::make('display_name')
-                            ->required(),
-                        TextInput::make('icon'),
-                        FileUpload::make('file')
-                            ->required(),
-                    ])
-                    ->columnSpanFull(),
+                Select::make('files')
+                    ->multiple()
+                    ->relationship('files', 'name'),
                 Builder::make('content')
                     ->blocks(self::getBlocks())
                     ->columnSpanFull()

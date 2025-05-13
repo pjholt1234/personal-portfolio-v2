@@ -1,6 +1,6 @@
 import { BlockTypes } from "@enums";
 import {FC} from "react";
-import {Text, Card, AnimatedCard, Snippet, Image, Set, Gallery, Projects, Typography} from "@shared-ui";
+import {Text, Card, AnimatedCard, Snippet, Image, Set, Gallery, Projects, Typography, YoutubeEmbed} from "@shared-ui";
 
 interface BlockRendererProps {
     blocks: Block[]
@@ -26,6 +26,8 @@ const BlockRenderer:FC<BlockRendererProps> = ({ blocks, isVisible = true }) => {
                 return <Gallery eyebrow={block.eyebrow} type={block.type} images={block.images} autoScroll={true} />;
             case BlockTypes.PROJECTS:
                 return <Projects eyebrow={block.eyebrow} type={block.type} projects={block.projects} />;
+            case BlockTypes.YOUTUBE:
+                return <YoutubeEmbed eyebrow={block.eyebrow} type={block.type} url={block.url} />;
             default:
                 console.error(`Unknown block type: ${block.type}`);
                 return null;

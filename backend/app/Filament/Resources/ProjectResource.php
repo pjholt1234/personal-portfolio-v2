@@ -56,16 +56,9 @@ class ProjectResource extends Resource
                 DatePicker::make('start_date')
                     ->required(),
                 DatePicker::make('end_date'),
-//                Repeater::make('media')
-//                    ->schema([
-//                        TextInput::make('display_name')
-//                            ->url()
-//                            ->required(),
-//                        TextInput::make('icon'),
-//                        FileUpload::make('file')
-//                            ->required(),
-//                    ])
-//                    ->columnSpanFull(),
+                Select::make('files')
+                    ->multiple()
+                    ->relationship('files', 'name'),
                 Builder::make('content')
                     ->blocks(self::getBlocks())
                     ->columnSpanFull()

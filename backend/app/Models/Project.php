@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Project extends Model
 {
+
     protected $fillable = [
         'title',
         'subtitle',
@@ -38,5 +40,10 @@ class Project extends Model
     public function events(): BelongsToMany
     {
         return $this->belongsToMany(Event::class);
+    }
+
+    public function files(): MorphToMany
+    {
+        return $this->morphToMany(File::class, 'fileable');
     }
 }

@@ -18,6 +18,7 @@ class EventResource extends JsonResource
         $data =  [
             'id' => $this->id,
             'title' => $this->title,
+            'subtitle' => $this->subtitle,
             'slug' => $this->slug,
             'type' => $this->type,
             'icon' => $this->icon,
@@ -25,6 +26,7 @@ class EventResource extends JsonResource
             'description_long' => $this->description_long,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
+            'files' => FileResource::collection($this->files),
         ];
 
         return $this->addBlocksWhenRequested($data);

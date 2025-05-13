@@ -26,11 +26,13 @@ interface Project {
     blocks: Block[];
     github_link: string;
     hidden: boolean;
+    files?: File[];
 }
 
 interface CareerEvent {
     id: number;
     title: string;
+    subtitle: string;
     slug: string;
     subtitle: string;
     type: 'EDUCATION' | 'PROFESSIONAL';
@@ -40,6 +42,7 @@ interface CareerEvent {
     description_long?: string;
     icon?: string;
     blocks: Block[];
+    files?: File[];
 }
 
 interface Block {
@@ -51,6 +54,12 @@ interface Image {
     image_url: string;
     alt: string;
     description?: string;
+}
+
+interface File {
+    name: string;
+    machine_name: string;
+    url: string;
 }
 
 declare module '*.module.scss' {
