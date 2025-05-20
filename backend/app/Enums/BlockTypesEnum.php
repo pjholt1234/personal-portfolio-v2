@@ -13,4 +13,5 @@ enum BlockTypesEnum: string
     case GALLERY = 'gallery';
     case PROJECTS = 'projects';
     case YOUTUBE = 'Youtube Embed';
+    CASE TEXT_WITH_IMAGE = 'Text with image';
 }

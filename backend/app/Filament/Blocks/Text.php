@@ -9,6 +9,7 @@ use App\Models\Event;
 use App\Models\Page;
 use App\Models\Project;
 class Text extends AbstractBlock {
+    
     public function __construct()
     {
         parent::__construct(BlockTypesEnum::TEXT);
