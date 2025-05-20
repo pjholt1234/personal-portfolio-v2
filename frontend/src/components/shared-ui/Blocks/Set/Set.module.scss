@@ -6,16 +6,22 @@
 
     &--item {
         color: $secondary;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        padding-right: 75px;
     }
 }
 
 .set__pills {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     cursor: pointer;
-    gap: 5px;
+    row-gap: 5px;
+    margin: -2.5px;
 
     &--item {
-
+        margin: 2.5px;
     }
 }

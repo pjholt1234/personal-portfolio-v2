@@ -6,6 +6,7 @@ enum BlockTypes {
     GALLERY = 'GALLERY',
     PROJECTS = 'PROJECTS',
     YOUTUBE = 'YOUTUBE',
+    TEXT_WITH_IMAGE = 'TEXT_WITH_IMAGE'
 }
 
 export default BlockTypes;

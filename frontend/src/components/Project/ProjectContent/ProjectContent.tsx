@@ -50,8 +50,12 @@ const ProjectContent: FC<ProjectContentProps> = ({ project }) => {
                         )}
                     </div>
                     <div className={styles['header--container']}>
-                        <Typography component="h3" className="headed-layout__header--subtitle">{project.subtitle}</Typography>
-                        <Typography component="h3" className="headed-layout__header--date" >{renderDate()}</Typography>
+                        <Typography component="h3" className="headed-layout__header--subtitle">
+                            {project.subtitle ? project.subtitle : renderDate()}
+                        </Typography>
+                        {project.subtitle && (
+                            <Typography component="h3" className="headed-layout__header--date">{renderDate()}</Typography>
+                        )}
                     </div>
                 </div>
                 <Files files={project.files ?? []} />
