@@ -17,13 +17,13 @@ const HomeContent: FC<HomeContentProps> = ({ className }) => {
     return (
         <div className={mergeClassNames(className, styles.content)}>
             <AnimatedPanel isVisible={pathname === "/"}>
-                <HomePanel />
+                <HomePanel isVisible={pathname === "/"} />
             </AnimatedPanel>
             <AnimatedPanel isVisible={pathname.includes( "projects")}>
-                <ProjectPanel />
+                <ProjectPanel isVisible={pathname.includes( "projects")} />
             </AnimatedPanel>
             <AnimatedPanel isVisible={pathname.includes( "experience")}>
-                <ExperiencePanel />
+                <ExperiencePanel isVisible={pathname.includes( "experience")} />
             </AnimatedPanel>
         </div>
     );

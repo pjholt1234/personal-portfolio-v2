@@ -2,16 +2,19 @@ import {useEffect, useState} from "react";
 import {getProjects} from "@api";
 import { ProjectCard } from "@projects";
 import { AnimatedCard, Filters } from "@shared-ui";
-import {useLocation} from "react-router-dom";
+import useTypewriter from '../../../Hooks/useTypewriter';
+import useIsMobile from '../../../Hooks/IsMobile';
 
-const ProjectPanel = () => {
-    const { pathname } = useLocation();
+interface ProjectPanelProps {
+  isVisible: boolean;
+}
 
+const ProjectPanel = ({ isVisible }: ProjectPanelProps) => {
     const [projects, setProjects] = useState<Project[]>([]);
     const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
     const [filter, setFilter] = useState({ type: "", title: "" });
-
-    const isVisible = pathname === "/projects";
+    const isMobile = useIsMobile();
+    const { displayed: typedHeader } = useTypewriter('Projects', 120, isVisible && isMobile);
 
     const allFilters: Filter[] = [
         {
@@ -86,8 +89,10 @@ const ProjectPanel = () => {
     return (
         <div className="headed-layout">
             <div className="headed-layout__header">
-                <h1>Projects</h1>
-                <Filters filterState={filter} filters={allFilters} setFilter={setFilter} />
+                <h1>{isMobile ? typedHeader : 'Projects'}</h1>
+                <AnimatedCard key="project-filters" index={1} isVisible={isVisible}>
+                    <Filters filterState={filter} filters={allFilters} setFilter={setFilter} />
+                </AnimatedCard>
             </div>
             <div className="headed-layout--content">
                 {filteredProjects?.length > 0 ? (

@@ -1,16 +1,13 @@
 import {FC, useEffect, useState} from "react";
 import { getBlocks } from "@api"
 import { BlockRenderer } from "@utils";
-import {useLocation} from "react-router-dom";
 
-interface HomePanelProps {}
+interface HomePanelProps {
+    isVisible: boolean;
+}
 
-const HomePanel: FC<HomePanelProps> = ({}) => {
-    const { pathname } = useLocation();
-
+const HomePanel: FC<HomePanelProps> = ({isVisible}) => {
     const [blocks, setBlocks] = useState<Block[]>([]);
-
-    const isVisible = pathname === "/";
 
     useEffect(() => {
         getBlocks("page", "home")

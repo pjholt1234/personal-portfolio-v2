@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import { getEvents } from "@api";
 import { AnimatedCard } from "@shared-ui";
 import { EventCard } from "@events";
-import {useLocation} from "react-router-dom";
+import useTypewriter from '../../../Hooks/useTypewriter';
+import useIsMobile from '../../../Hooks/IsMobile';
 
-const ExperiencePanel = () => {
-    const { pathname } = useLocation();
+interface ExperiencePanelProps {
+  isVisible: boolean;
+}
 
+const ExperiencePanel = ({ isVisible }: ExperiencePanelProps) => {
     const [events, setEvents] = useState<CareerEvent[]>([]);
-
-    const isVisible = pathname === "/experience";
-
+    const isMobile = useIsMobile();
+    const { displayed: typedHeader } = useTypewriter('Experience', 120, isVisible && isMobile);
 
     useEffect(() => {
         getEvents()
@@ -23,7 +25,7 @@ const ExperiencePanel = () => {
     return (
         <div className="headed-layout">
             <div className="headed-layout__header">
-                <h1>Experience</h1>
+                <h1>{isMobile ? typedHeader : 'Experience'}</h1>
             </div>
             <div className="headed-layout--content">
                 {events?.length > 0 ? (

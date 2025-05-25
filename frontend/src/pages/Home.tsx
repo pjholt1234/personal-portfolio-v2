@@ -1,5 +1,5 @@
 import useIsMobile from "@/Hooks/IsMobile";
-import {MobilePageLayout, PageLayout} from "@global";
+import {MobilePageLayout, PageLayout, MobileContent} from "@global";
 import { HomeContent } from "@home";
 
 const Home = () => {
@@ -7,7 +7,9 @@ const Home = () => {
     console.log('isMobile', isMobile);
 
     if(isMobile) {
-        return <MobilePageLayout />
+        return <MobilePageLayout>
+            <MobileContent />
+        </MobilePageLayout>
     }
 
 
