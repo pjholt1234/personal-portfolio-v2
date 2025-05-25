@@ -1,0 +1,57 @@
+@import "@assets/styles/_variables.scss";
+@import "@assets/styles/_breakpoints.scss";
+
+.mobileNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background: $background-colour;
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid $secondary;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+
+  // Underline element for animation
+  position: fixed;
+  
+  .mobileNav__underline {
+    position: absolute;
+    bottom: 0;
+    height: 5px;
+    border-radius: 20px;
+    background: $tertiary;
+    transition: left 0.3s cubic-bezier(0.4,0,0.2,1), width 0.3s cubic-bezier(0.4,0,0.2,1);
+    z-index: 101;
+    pointer-events: none;
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.navItem {
+  flex: 1;
+  text-align: center;
+  color: $secondary;
+  padding: 15px 0 15px 0;
+  font-size: 1.1rem;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.active {
+  color: $tertiary;
+  font-weight: 600;
+}
+
+.active::after {
+  content: none;
+}
