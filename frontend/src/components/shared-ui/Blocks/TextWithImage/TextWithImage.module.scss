@@ -37,11 +37,25 @@
         flex: 1;
         min-width: 0; // Prevents flex item from overflowing
 
+        @media (max-width: 768px) {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         img {
             width: 100%;
             height: auto;
             object-fit: cover;
             border-radius: 4px;
+            
+            @media (max-width: 768px) {
+                max-height: 400px;
+                width: auto;
+                margin: 0;
+                display: block;
+            }
         }
     }
 } 
