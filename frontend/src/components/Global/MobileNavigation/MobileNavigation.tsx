@@ -1,29 +1,24 @@
 import {FC} from 'react';
 import styles from './MobileNavigation.module.scss';
 import { useState, useRef, useLayoutEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useSiteNavigation } from '@/Hooks/useSiteNavigation';
 
 interface MobileNavigationProps {}
 
 const navItems = [
-  { label: 'Home', key: 'home', path: '/' },
-  { label: 'Experience', key: 'experience', path: '/experience' },
-  { label: 'Projects', key: 'projects', path: '/projects' },
+  { label: 'About me', key: 'home' },
+  { label: 'Experience', key: 'experience' },
+  { label: 'Projects', key: 'projects' },
 ];
 
 const MobileNavigation: FC<MobileNavigationProps> = () => {
-    const navigate = useNavigate();
-    const { pathname } = useLocation();
+    const { location, setLocation, setIsNavigating } = useSiteNavigation();
     const navRef = useRef<HTMLDivElement>(null);
     const btnRefs = useRef<(HTMLButtonElement | null)[]>([]);
     const [underlineStyle, setUnderlineStyle] = useState<{ left: number; width: number }>({ left: 0, width: 0 });
 
     useLayoutEffect(() => {
-        const idx = navItems.findIndex(item => {
-            let isActive = pathname.includes(item.path);
-            if(item.path === "/") isActive = pathname === "/";
-            return isActive;
-        });
+        const idx = navItems.findIndex(item => location === item.key);
         const btn = btnRefs.current[idx];
         const nav = navRef.current;
         if (btn && nav) {
@@ -34,15 +29,12 @@ const MobileNavigation: FC<MobileNavigationProps> = () => {
                 width: btnRect.width
             });
         }
-    }, [pathname]);
+    }, [location]);
 
     return (
-        <nav className={styles.mobileNav} ref={navRef as any} style={{ position: 'fixed', left: 0, bottom: 0, width: '100vw' }}>
+        <nav className={styles.mobileNav} ref={navRef as any}>
             {navItems.map((item, idx) => {
-                let isActive = pathname.includes(item.path);
-                if(item.path === "/") {
-                    isActive = pathname === "/";
-                }
+                let isActive = location === item.key;
                 return (
                     <button
                         key={item.key}
@@ -51,7 +43,10 @@ const MobileNavigation: FC<MobileNavigationProps> = () => {
                             styles.navItem,
                             isActive ? styles.active : '',
                         ].filter(Boolean).join(' ')}
-                        onClick={() => navigate(item.path)}
+                        onClick={() => {
+                          setIsNavigating(true);
+                          setLocation(item.key);
+                        }}
                         type="button"
                     >
                         {item.label}
@@ -60,7 +55,10 @@ const MobileNavigation: FC<MobileNavigationProps> = () => {
             })}
             <div
                 className={styles.mobileNav__underline}
-                style={{ left: underlineStyle.left, width: underlineStyle.width }}
+                style={{
+                  ['--underline-left' as any]: `${underlineStyle.left}px`,
+                  ['--underline-width' as any]: `${underlineStyle.width}px`,
+                }}
             />
         </nav>
     );
