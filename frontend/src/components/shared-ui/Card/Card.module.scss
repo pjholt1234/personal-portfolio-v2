@@ -8,6 +8,10 @@
   flex-direction: column;
   min-height: fit-content;
 
+  @media (max-width: 768px) {
+    margin-bottom: 0 !important;
+  }
+
   &__header {
     display: flex;
     align-items: center;
@@ -20,6 +24,10 @@
 
   &__prefix {
     width: 40%;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   &__pills {

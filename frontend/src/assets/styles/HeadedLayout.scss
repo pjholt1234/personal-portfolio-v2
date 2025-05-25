@@ -41,5 +41,10 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
+
+    @media (max-width: 768px) {
+      gap: 0 !important;
+  }
   }
 }

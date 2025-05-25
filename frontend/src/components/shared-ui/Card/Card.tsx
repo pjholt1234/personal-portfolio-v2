@@ -2,7 +2,7 @@ import styles from './Card.module.scss';
 import { FC, ReactNode } from "react";
 import { mergeClassNames } from "@helpers";
 import Typography from "@components/shared-ui/Typography/Typography";
-
+import useIsMobile from "@/Hooks/IsMobile";
 interface CardProps {
     className?: string;
     prefix?: ReactNode;
@@ -10,16 +10,19 @@ interface CardProps {
     description?: string;
     footer?: ReactNode;
     children?: ReactNode;
+    visibleDescription?: boolean;
 }
 
 const Card: FC<CardProps> = ({
     className = '',
     prefix,
     title,
+    visibleDescription = true,
     description,
     footer,
     children
 }) => {
+    const isMobile = useIsMobile();
     const renderPrefix = () => {
         if (prefix) {
             return (
@@ -52,10 +55,11 @@ const Card: FC<CardProps> = ({
         return (
             <>
                 <div className={styles['card__header']}>
-                    {renderPrefix()}
+                    {!isMobile && renderPrefix()}
                     {title}
                 </div>
-                {renderDescription()}
+                {isMobile && renderPrefix()}
+                {visibleDescription && renderDescription()}
                 {footer}
             </>
         )

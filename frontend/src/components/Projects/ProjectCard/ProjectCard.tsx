@@ -3,13 +3,13 @@ import styles from './ProjectCard.module.scss';
 import {formatDateTime, preloadProject } from "@helpers";
 import { Pill, Card, CardHeading, PrefetchLink } from "@shared-ui";
 import {getProject} from "@api";
-
+import useIsMobile from "@/Hooks/IsMobile";
 interface ProjectCard {
     project: Project;
 }
 
 const ProjectCard: FC<ProjectCard> = ({ project }) => {
-
+    const isMobile = useIsMobile();
     const renderPrefix = () => {
         let startDate = 'Unknown';
 
@@ -56,6 +56,7 @@ const ProjectCard: FC<ProjectCard> = ({ project }) => {
         prefix={renderPrefix()}
         title={renderTitle()}
         description={project.description}
+        visibleDescription={!isMobile}
         footer={renderFooter()}
     />;
 }
