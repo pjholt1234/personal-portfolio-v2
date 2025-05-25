@@ -63,7 +63,7 @@ const Background: React.FC = () => {
         };
     }, []);
 
-    return <canvas className={styles.canvas} ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0 }} />;
+    return <canvas className={styles.canvas} ref={canvasRef} />;
 };
 
 export default Background;

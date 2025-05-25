@@ -2,4 +2,9 @@
   background-color: $background-colour;
   z-index: -1;
   overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
