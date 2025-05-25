@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
+
+.textSection {
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 5.5rem;
+
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 0;
+    margin-left: 1ch;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    color: #666;
+    margin: 0.7rem 0 0 0;
+    margin-left: 1ch;
+  }
+}
+
+.name {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.title {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0.5rem 0 0 0;
+}
+
+.cursor {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+} 
