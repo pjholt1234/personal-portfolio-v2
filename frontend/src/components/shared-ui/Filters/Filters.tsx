@@ -59,6 +59,7 @@ const Filters: FC<FiltersProps> = ({ setFilter, filterState, filters }) => {
                                 placeholderText="Start date"
                                 className={mergeClassNames(styles['filter'], styles['filter--date'], styles['filter--date__start'])}
                                 dateFormat="yyyy-MM-dd"
+                                portalId="root"
                             />
                             <DatePicker
                                 selected={filterState[filter.name]?.end ? new Date(filterState[filter.name].end) : undefined}
@@ -70,6 +71,7 @@ const Filters: FC<FiltersProps> = ({ setFilter, filterState, filters }) => {
                                 placeholderText="End date"
                                 className={mergeClassNames(styles['filter'], styles['filter--date'], styles['filter--date__end'])}
                                 dateFormat="yyyy-MM-dd"
+                                portalId="root"
                             />
                     </div>
                 );
