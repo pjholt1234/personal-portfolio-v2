@@ -1,34 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Typography } from '@shared-ui';
 import Socials from '../Socials/Socials';
 import styles from './MobileProfile.module.scss';
-
-function useTypewriter(text: string, speed: number, start: boolean) {
-  const [displayed, setDisplayed] = useState('');
-  const [isDone, setIsDone] = useState(false);
-
-  useEffect(() => {
-    if (!start) {
-      setDisplayed('');
-      setIsDone(false);
-      return;
-    }
-    setDisplayed('');
-    setIsDone(false);
-    let i = 1;
-    const interval = setInterval(() => {
-      setDisplayed(text.slice(0, i));
-      if (i === text.length) {
-        clearInterval(interval);
-        setIsDone(true);
-      }
-      i++;
-    }, speed);
-    return () => clearInterval(interval);
-  }, [text, speed, start]);
-
-  return { displayed, isDone };
-}
+import useTypewriter from '@/Hooks/useTypewriter';
 
 const BlinkingCursor = ({ active = true }) => (
   <span className={styles.cursor} style={{ width: '1ch', display: 'inline-block' }}>
