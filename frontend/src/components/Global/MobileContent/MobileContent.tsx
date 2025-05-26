@@ -10,19 +10,23 @@ const MobileContent: FC = () => {
   const [homeRef, homeVisible] = useVisibilityObserver<HTMLDivElement>();
   const [experienceRef, experienceVisible] = useVisibilityObserver<HTMLDivElement>();
   const [projectsRef, projectsVisible] = useVisibilityObserver<HTMLDivElement>();
-  const { location, setLocation, isNavigating } = useSiteNavigation({ disableScroll: true });
+  const { updateSectionFromScroll, isIntentionalNavigation } = useSiteNavigation();
 
   useEffect(() => {
-    if (isNavigating) return;
+    // Don't update from scroll if we're in intentional navigation mode
+    if (isIntentionalNavigation) {
+      return;
+    }
+    
     // Priority: projects > experience > home (topmost visible wins)
     if (projectsVisible) {
-      if (location !== 'projects') setLocation('projects');
+      updateSectionFromScroll('projects');
     } else if (experienceVisible) {
-      if (location !== 'experience') setLocation('experience');
+      updateSectionFromScroll('experience');
     } else if (homeVisible) {
-      if (location !== 'home') setLocation('home');
+      updateSectionFromScroll('home');
     }
-  }, [homeVisible, experienceVisible, projectsVisible, isNavigating]);
+  }, [homeVisible, experienceVisible, projectsVisible, isIntentionalNavigation, updateSectionFromScroll]);
 
   return (
     <div>

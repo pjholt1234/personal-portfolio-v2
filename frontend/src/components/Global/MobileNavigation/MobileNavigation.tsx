@@ -12,13 +12,13 @@ const navItems = [
 ];
 
 const MobileNavigation: FC<MobileNavigationProps> = () => {
-    const { location, setLocation, setIsNavigating } = useSiteNavigation();
+    const { currentSection, navigateToSection } = useSiteNavigation();
     const navRef = useRef<HTMLDivElement>(null);
     const btnRefs = useRef<(HTMLButtonElement | null)[]>([]);
     const [underlineStyle, setUnderlineStyle] = useState<{ left: number; width: number }>({ left: 0, width: 0 });
 
     useLayoutEffect(() => {
-        const idx = navItems.findIndex(item => location === item.key);
+        const idx = navItems.findIndex(item => currentSection === item.key);
         const btn = btnRefs.current[idx];
         const nav = navRef.current;
         if (btn && nav) {
@@ -29,12 +29,12 @@ const MobileNavigation: FC<MobileNavigationProps> = () => {
                 width: btnRect.width
             });
         }
-    }, [location]);
+    }, [currentSection]);
 
     return (
         <nav className={styles.mobileNav} ref={navRef as any}>
             {navItems.map((item, idx) => {
-                let isActive = location === item.key;
+                let isActive = currentSection === item.key;
                 return (
                     <button
                         key={item.key}
@@ -44,8 +44,7 @@ const MobileNavigation: FC<MobileNavigationProps> = () => {
                             isActive ? styles.active : '',
                         ].filter(Boolean).join(' ')}
                         onClick={() => {
-                          setIsNavigating(true);
-                          setLocation(item.key);
+                          navigateToSection(item.key);
                         }}
                         type="button"
                     >
