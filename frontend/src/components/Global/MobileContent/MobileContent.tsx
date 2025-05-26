@@ -5,6 +5,7 @@ import ProjectPanel from '@components/Projects/ProjectPanel/ProjectPanel';
 import ExperiencePanel from '@components/Events/ExperiencePanel/ExperiencePanel';
 import useVisibilityObserver from '@/Hooks/useVisibilityHook';
 import { useSiteNavigation } from '@/Hooks/useSiteNavigation';
+import styles from './MobileContent.module.scss';
 
 const MobileContent: FC = () => {
   const [homeRef, homeVisible] = useVisibilityObserver<HTMLDivElement>();
@@ -13,12 +14,10 @@ const MobileContent: FC = () => {
   const { updateSectionFromScroll, isIntentionalNavigation } = useSiteNavigation();
 
   useEffect(() => {
-    // Don't update from scroll if we're in intentional navigation mode
     if (isIntentionalNavigation) {
       return;
     }
     
-    // Priority: projects > experience > home (topmost visible wins)
     if (projectsVisible) {
       updateSectionFromScroll('projects');
     } else if (experienceVisible) {
@@ -29,9 +28,9 @@ const MobileContent: FC = () => {
   }, [homeVisible, experienceVisible, projectsVisible, isIntentionalNavigation, updateSectionFromScroll]);
 
   return (
-    <div>
-      <MobileProfile />
+    <div className={styles.container} id="mobile-content">
       <div id="home" ref={homeRef}>
+        <MobileProfile />
         <HomePanel isVisible={homeVisible} />
       </div>
       <div id="experience" ref={experienceRef}>

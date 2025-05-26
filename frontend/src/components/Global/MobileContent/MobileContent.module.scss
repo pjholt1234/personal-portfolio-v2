@@ -1,0 +1,7 @@
+.container {
+    margin-bottom: 50px;
+}
+
+:global(.headed-layout__header) {
+    padding-bottom: 0 !important;
+}

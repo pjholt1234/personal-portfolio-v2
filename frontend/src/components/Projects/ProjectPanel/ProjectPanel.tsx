@@ -2,8 +2,9 @@ import {useEffect, useState} from "react";
 import {getProjects} from "@api";
 import { ProjectCard } from "@projects";
 import { AnimatedCard, Filters } from "@shared-ui";
-import useTypewriter from '../../../Hooks/useTypewriter';
-import useIsMobile from '../../../Hooks/IsMobile';
+import useTypewriter from '@/Hooks/useTypewriter';
+import useIsMobile from '@/Hooks/IsMobile';
+import styles from './ProjectPanel.module.scss';
 
 interface ProjectPanelProps {
   isVisible: boolean;
@@ -97,7 +98,7 @@ const ProjectPanel = ({ isVisible }: ProjectPanelProps) => {
             <div className="headed-layout--content">
                 {filteredProjects?.length > 0 ? (
                     filteredProjects?.map((project, index: number) => (
-                        <AnimatedCard key={index} index={index} isVisible={isVisible}>
+                        <AnimatedCard key={index} index={index} isVisible={isVisible} className={styles['project-card--filter']}>
                             <ProjectCard project={project} />
                         </AnimatedCard>
                     ))
