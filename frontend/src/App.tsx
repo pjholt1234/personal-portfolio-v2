@@ -5,12 +5,12 @@ import { SiteNavigationProvider } from "./Hooks/useSiteNavigation";
 
 const App = () => {
     return (
-        <SiteNavigationProvider>
-            <BrowserRouter>
+        <BrowserRouter>
+            <SiteNavigationProvider>
                 <Background />
                 <AppRoutes />
-            </BrowserRouter>
-        </SiteNavigationProvider>
+            </SiteNavigationProvider>
+        </BrowserRouter>
     );
 };
 

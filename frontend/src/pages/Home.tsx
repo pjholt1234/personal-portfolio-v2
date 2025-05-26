@@ -4,14 +4,12 @@ import { HomeContent } from "@home";
 
 const Home = () => {
     const isMobile = useIsMobile();
-    console.log('isMobile', isMobile);
 
     if(isMobile) {
         return <MobilePageLayout>
             <MobileContent />
         </MobilePageLayout>
     }
-
 
     return (
         <PageLayout>

@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 
-const useVisibilityObserver = <T extends HTMLElement>(threshold = 0.1) => {
+const useVisibilityObserver = <T extends HTMLElement>(threshold = 0.2) => {
   const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(false);
 

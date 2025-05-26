@@ -1,8 +1,9 @@
 import { FC, useState, useEffect } from "react";
 import {useParams} from "react-router-dom";
 import {getEvent} from "@api";
-import {PageLayout} from "@global";
+import {MobilePageLayout, PageLayout} from "@global";
 import {EventContent} from "@event";
+import useIsMobile from '@/Hooks/IsMobile';
 
 interface EventProps {
 }
@@ -10,10 +11,10 @@ interface EventProps {
 const Event: FC<EventProps> = () => {
     let { slug } = useParams();
     const [event, setEvent] = useState<CareerEvent | null>(null);
-
+    const isMobile = useIsMobile();
 
     if(!slug) {
-        return <div>Project not found</div>;
+        return <div>Event not found</div>;
     }
 
     useEffect(() => {
@@ -30,6 +31,13 @@ const Event: FC<EventProps> = () => {
         return <div>Loading...</div>;
     }
 
+    if (isMobile) {
+        return (
+            <MobilePageLayout>
+                <EventContent event={event} />
+            </MobilePageLayout>
+        )
+    }
 
     return (
         <PageLayout>

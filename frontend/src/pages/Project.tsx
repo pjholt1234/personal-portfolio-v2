@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProject } from "@api";
-import { PageLayout } from "@global";
+import { MobilePageLayout, PageLayout } from "@global";
 import { ProjectContent } from "@project";
+import useIsMobile from '@/Hooks/IsMobile';
 
 interface ProjectProps {
 }
@@ -10,7 +11,7 @@ interface ProjectProps {
 const Project: FC<ProjectProps> = () => {
     const { slug } = useParams();
     const [project, setProject] = useState<Project | null>(null);
-
+    const isMobile = useIsMobile();
 
     if(!slug) {
         return <div>Project not found</div>;
@@ -30,6 +31,13 @@ const Project: FC<ProjectProps> = () => {
         return <div>Loading...</div>;
     }
 
+    if (isMobile) {
+        return (
+            <MobilePageLayout>
+                <ProjectContent project={project} />
+            </MobilePageLayout>
+        )
+    }
 
     return (
         <PageLayout>
