@@ -1,9 +1,10 @@
 import {FC} from "react";
 import {BlockRenderer} from "@utils";
-import {formatDateTime, mergeClassNames} from "@helpers";
+import {formatDateTime, formatProjectType, mergeClassNames} from "@helpers";
 import styles from "./ProjectContent.module.scss";
 import {Files, Pill, Typography} from "@shared-ui";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import isMobile from "@/Hooks/IsMobile";
 
 interface ProjectContentProps {
     project: Project;
@@ -53,9 +54,17 @@ const ProjectContent: FC<ProjectContentProps> = ({ project }) => {
                         <Typography component="h3" className="headed-layout__header--subtitle">
                             {project.subtitle ? project.subtitle : renderDate()}
                         </Typography>
-                        {project.subtitle && (
+                        { !isMobile() && project.subtitle && (
                             <Typography component="h3" className="headed-layout__header--date">{renderDate()}</Typography>
                         )}
+                    </div>
+                    { isMobile() && project.subtitle && (
+                        <div className={styles['header--container']}>
+                            <Typography component="h4" className="headed-layout__header--date">{renderDate()}</Typography>
+                        </div>
+                    )}
+                    <div className={styles['header--container']}>
+                        <Typography component="p" className="headed-layout__header--type">{formatProjectType(project.type)}</Typography>
                     </div>
                 </div>
                 <Files files={project.files ?? []} />

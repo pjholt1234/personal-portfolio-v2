@@ -1,0 +1,41 @@
+// Breakpoints
+$breakpoints: (
+    'xs': 0,
+    'sm': 576px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px,
+    'xxl': 1400px
+);
+
+// Mixins for responsive design
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @warn "Invalid breakpoint: #{$breakpoint}.";
+    }
+}
+
+// Mobile-first approach
+@mixin mobile {
+    @media (max-width: map-get($breakpoints, 'md') - 1) {
+        @content;
+    }
+}
+
+// Tablet and up
+@mixin tablet {
+    @media (min-width: map-get($breakpoints, 'md')) {
+        @content;
+    }
+}
+
+// Desktop and up
+@mixin desktop {
+    @media (min-width: map-get($breakpoints, 'lg')) {
+        @content;
+    }
+} 
