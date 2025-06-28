@@ -1,29 +1,19 @@
-import {FC} from "react";
+import { Typography } from '@shared-ui';
+import type { Block } from '@/types';
 import styles from "./Image.module.scss";
-import { Typography } from "@shared-ui";
 
-
-interface ImageProps extends Block {
-    image: Image;
+interface ImageProps {
+    eyebrow?: string;
+    type: string;
+    image: string;
+    image_alt?: string;
 }
 
-const Image: FC<ImageProps> = ({ image }) => {
-    const renderDescription = () => {
-        if(!image.description) {
-            return null;
-        }
-
-        return (
-            <Typography className={styles['image--description']} component="p">
-                {image.description}
-            </Typography>
-        );
-    }
-    
+const Image: React.FC<ImageProps> = ({ eyebrow, type, image, image_alt }) => {
     return (
-        <div className={styles['image--container']}>
-            <img src={image.image_url} alt={image.alt} className={styles.image}/>
-            {renderDescription()}
+        <div className={styles.image}>
+            {eyebrow && <Typography variant="eyebrow">{eyebrow}</Typography>}
+            <img src={image} alt={image_alt || ''} className={styles.img} />
         </div>
     );
 };

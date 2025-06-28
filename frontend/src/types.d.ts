@@ -10,11 +10,11 @@ interface Filter {
     options?: Option[];
 }
 
-interface Project {
+export interface Project {
     id: number;
-    slug: string;
     title: string;
     subtitle: string;
+    slug: string;
     description: string;
     description_long: string;
     type: 'PERSONAL' | 'PROFESSIONAL';
@@ -29,25 +29,41 @@ interface Project {
     files?: File[];
 }
 
-interface CareerEvent {
+export interface CareerEvent {
     id: number;
     title: string;
     subtitle: string;
     slug: string;
-    subtitle: string;
+    description: string;
+    description_long: string;
     type: 'EDUCATION' | 'PROFESSIONAL';
     start_date: string;
     end_date?: string;
-    description: string;
-    description_long?: string;
-    icon?: string;
+    date: string;
+    created_at: string;
+    updated_at: string;
     blocks: Block[];
     files?: File[];
+    icon?: string;
 }
 
-interface Block {
-    eyebrow: ?string;
+export interface Block {
+    id: number;
     type: string;
+    content: any;
+    order: number;
+    created_at: string;
+    updated_at: string;
+    eyebrow?: string;
+    text?: string;
+    image?: string;
+    image_position?: string;
+    image_alt?: string;
+    url?: string;
+    set?: string[];
+    pills?: string[];
+    projects?: Project[];
+    images?: string[];
 }
 
 interface Image {
@@ -56,13 +72,29 @@ interface Image {
     description?: string;
 }
 
-interface File {
+export interface File {
+    id: number;
     name: string;
     machine_name: string;
     url: string;
 }
 
+export interface Event {
+    id: number;
+    title: string;
+    slug: string;
+    description: string;
+    date: string;
+    created_at: string;
+    updated_at: string;
+}
+
 declare module '*.module.scss' {
     const classes: { [key: string]: string };
     export default classes;
+}
+
+declare module '*.scss' {
+    const content: { [key: string]: string };
+    export default content;
 }

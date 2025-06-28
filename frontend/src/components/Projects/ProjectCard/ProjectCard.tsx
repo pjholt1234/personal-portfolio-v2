@@ -3,12 +3,15 @@ import styles from './ProjectCard.module.scss';
 import {formatDateTime, preloadProject, formatProjectType } from "@helpers";
 import {Pill, Card, CardHeading, PrefetchLink, Typography} from "@shared-ui";
 import {getProject} from "@api";
-import useIsMobile from "@/Hooks/IsMobile";
-interface ProjectCard {
+import useIsMobile from '@/Hooks/IsMobile';
+import { useNavigate } from 'react-router-dom';
+import type { Project } from '@/types';
+
+interface ProjectCardProps {
     project: Project;
 }
 
-const ProjectCard: FC<ProjectCard> = ({ project }) => {
+const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
     const isMobile = useIsMobile();
     const renderPrefix = () => {
         let startDate = 'Unknown';

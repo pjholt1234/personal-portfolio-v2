@@ -1,8 +1,9 @@
 import {FC} from "react";
 import {BlockRenderer} from "@utils";
 import {formatDateTime, mergeClassNames} from "@helpers";
-import styles from "./EventContent.module.scss";
-import {Files, Typography} from "@shared-ui";
+import {Files, Typography, Card} from "@shared-ui";
+import { useParams } from 'react-router-dom';
+import type { CareerEvent } from '@/types';
 
 interface EventContentProps {
     event: CareerEvent;

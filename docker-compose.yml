@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_BACKEND_URL=http://localhost:8001
+    ports:
+      - "3001:80"
+    environment:
+      - VITE_BACKEND_URL=http://localhost:8001
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8001:80"
+    environment:
+      - APP_NAME=Personal Portfolio
+      - APP_ENV=local
+      - APP_KEY=base64:quVbfJkVE4MCMxHktiV7T0+LV8OdxImUQ4MfT7+tvSE=
+      - APP_DEBUG=true
+      - APP_URL=http://localhost:8001
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=database/database.sqlite
+    volumes:
+      - ./backend:/var/www/html
+    command: >
+      sh -c "
+             chown -R www-data:www-data /var/www/html/storage /var/www/html/database &&
+             chmod -R 775 /var/www/html/storage /var/www/html/database &&
+             php artisan migrate &&
+             apache2-foreground"
+
+volumes:
+  db_data: 
