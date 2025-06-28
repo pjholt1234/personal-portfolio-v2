@@ -8,6 +8,9 @@ WORKDIR /app
 ARG VITE_BACKEND_URL
 ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
 
+# Increase Node.js memory limit
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 # Install dependencies
 COPY package*.json ./
 RUN npm install
