@@ -19,13 +19,19 @@ jobs:
 
       - name: Build frontend image
         run: |
+          echo "Building frontend image..."
           docker build -t personal-portfolio-frontend:latest ./frontend
+          echo "Saving frontend image to tar..."
           docker save personal-portfolio-frontend:latest > frontend.tar
+          echo "Frontend tar size: $(ls -lh frontend.tar)"
 
       - name: Build backend image
         run: |
+          echo "Building backend image..."
           docker build -t personal-portfolio-backend:latest ./backend
+          echo "Saving backend image to tar..."
           docker save personal-portfolio-backend:latest > backend.tar
+          echo "Backend tar size: $(ls -lh backend.tar)"
 
       - name: Generate production docker-compose
         env:
@@ -33,6 +39,8 @@ jobs:
         run: |
           # Create docker-compose.prod.yml from template
           envsubst < docker-compose.prod.example.yml > docker-compose.prod.yml
+          echo "Generated docker-compose.prod.yml:"
+          cat docker-compose.prod.yml
 
       - name: Copy files to EC2
         env:
@@ -43,12 +51,18 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ssh_key
           chmod 600 ssh_key
           
+          # Verify files exist before copying
+          ls -lh frontend.tar backend.tar docker-compose.prod.yml
+          
           # Copy Docker images and compose file
-          scp -i ssh_key -o StrictHostKeyChecking=no \
+          scp -v -i ssh_key -o StrictHostKeyChecking=no \
             frontend.tar \
             backend.tar \
             docker-compose.prod.yml \
             $EC2_USERNAME@$EC2_HOST:~/
+          
+          # Verify files were copied
+          ssh -i ssh_key -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_HOST 'ls -lh frontend.tar backend.tar docker-compose.prod.yml'
 
       - name: Deploy to EC2
         env:
