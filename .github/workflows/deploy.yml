@@ -44,7 +44,7 @@ jobs:
           chmod 600 ssh_key
           
           # Create necessary directories on EC2
-          ssh -i ssh_key -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_HOST 'mkdir -p ~/backend/database ~/backend/storage'
+          ssh -i ssh_key -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_HOST 'sudo mkdir -p ~/backend/database ~/backend/storage && sudo chown -R ubuntu:ubuntu ~/backend'
           
           # Copy Docker images and compose file
           scp -v -i ssh_key -o StrictHostKeyChecking=no \
