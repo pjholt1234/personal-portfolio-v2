@@ -19,7 +19,10 @@ jobs:
 
       - name: Build frontend image
         run: |
-          docker build -t personal-portfolio-frontend:latest ./frontend
+          docker build -t personal-portfolio-frontend:latest \
+            --build-arg VITE_BACKEND_URL=$BACKEND_URL \
+            --build-arg VITE_API_URL=$BACKEND_URL \
+            ./frontend
           docker save personal-portfolio-frontend:latest > frontend.tar
 
       - name: Build backend image
