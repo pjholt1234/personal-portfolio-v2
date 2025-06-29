@@ -1,3 +1,7 @@
 /frontend/.env
 /.idea
 /.DS_Store
+docker-compose.prod.yml
+frontend.tar
+backend.tar
+.env.production
