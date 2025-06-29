@@ -32,5 +32,6 @@ services:
       - SESSION_DRIVER=file
       - SESSION_LIFETIME=120
     volumes:
-      - ./backend/storage:/var/www/html/storage
+      - ~/backend/storage:/var/www/html/storage
+      - ~/backend/database:/var/www/html/database
     restart: unless-stopped 
