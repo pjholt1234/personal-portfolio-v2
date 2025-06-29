@@ -19,19 +19,13 @@ jobs:
 
       - name: Build frontend image
         run: |
-          echo "Building frontend image..."
           docker build -t personal-portfolio-frontend:latest ./frontend
-          echo "Saving frontend image to tar..."
           docker save personal-portfolio-frontend:latest > frontend.tar
-          echo "Frontend tar size: $(ls -lh frontend.tar)"
 
       - name: Build backend image
         run: |
-          echo "Building backend image..."
           docker build -t personal-portfolio-backend:latest ./backend
-          echo "Saving backend image to tar..."
           docker save personal-portfolio-backend:latest > backend.tar
-          echo "Backend tar size: $(ls -lh backend.tar)"
 
       - name: Generate production docker-compose
         env:
@@ -39,8 +33,6 @@ jobs:
         run: |
           # Create docker-compose.prod.yml from template
           envsubst < docker-compose.prod.example.yml > docker-compose.prod.yml
-          echo "Generated docker-compose.prod.yml:"
-          cat docker-compose.prod.yml
 
       - name: Copy files to EC2
         env:
@@ -51,18 +43,21 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ssh_key
           chmod 600 ssh_key
           
-          # Verify files exist before copying
-          ls -lh frontend.tar backend.tar docker-compose.prod.yml
+          # Create necessary directories on EC2
+          ssh -i ssh_key -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_HOST 'mkdir -p ~/backend/database ~/backend/storage'
           
           # Copy Docker images and compose file
           scp -v -i ssh_key -o StrictHostKeyChecking=no \
             frontend.tar \
             backend.tar \
             docker-compose.prod.yml \
-            $EC2_USERNAME@$EC2_HOST:~/
-          
-          # Verify files were copied
-          ssh -i ssh_key -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_HOST 'ls -lh frontend.tar backend.tar docker-compose.prod.yml'
+            backend/database/database.sqlite \
+            $EC2_USERNAME@$EC2_HOST:~/backend/database/
+            
+          # Copy storage directory
+          scp -v -r -i ssh_key -o StrictHostKeyChecking=no \
+            backend/storage/* \
+            $EC2_USERNAME@$EC2_HOST:~/backend/storage/
 
       - name: Deploy to EC2
         env:
@@ -70,17 +65,21 @@ jobs:
           EC2_HOST: 13.51.170.162
           EC2_USERNAME: ubuntu
         run: |
+          echo "$SSH_PRIVATE_KEY" > ssh_key
+          chmod 600 ssh_key
+          
           ssh -i ssh_key -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_HOST '
-            # Stop existing containers
-            docker compose -f docker-compose.prod.yml down || true
-            
             # Load new images
             docker load < frontend.tar
             docker load < backend.tar
+            
+            # Set proper permissions
+            sudo chown -R www-data:www-data ~/backend/storage ~/backend/database
+            sudo chmod -R 775 ~/backend/storage ~/backend/database
             
             # Start containers with new images
             docker compose -f docker-compose.prod.yml up -d
             
             # Cleanup
-            rm frontend.tar backend.tar docker-compose.prod.yml
+            rm frontend.tar backend.tar
           ' 
