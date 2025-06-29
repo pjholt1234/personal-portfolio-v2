@@ -43,21 +43,12 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ssh_key
           chmod 600 ssh_key
           
-          # Create necessary directories on EC2
-          ssh -i ssh_key -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_HOST 'sudo mkdir -p ~/backend/database ~/backend/storage && sudo chown -R ubuntu:ubuntu ~/backend'
-          
           # Copy Docker images and compose file
           scp -v -i ssh_key -o StrictHostKeyChecking=no \
             frontend.tar \
             backend.tar \
             docker-compose.prod.yml \
-            backend/database/database.sqlite \
-            $EC2_USERNAME@$EC2_HOST:~/backend/database/
-            
-          # Copy storage directory
-          scp -v -r -i ssh_key -o StrictHostKeyChecking=no \
-            backend/storage/* \
-            $EC2_USERNAME@$EC2_HOST:~/backend/storage/
+            $EC2_USERNAME@$EC2_HOST:~/
 
       - name: Deploy to EC2
         env:
@@ -69,16 +60,25 @@ jobs:
           chmod 600 ssh_key
           
           ssh -i ssh_key -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_HOST '
+            # Ensure directories exist with proper permissions
+            sudo mkdir -p ~/backend/database \
+              ~/backend/storage/app/public \
+              ~/backend/storage/framework/cache \
+              ~/backend/storage/framework/sessions \
+              ~/backend/storage/framework/views \
+              ~/backend/storage/logs
+            sudo chown -R ubuntu:ubuntu ~/backend
+            sudo chmod -R 775 ~/backend
+            
             # Load new images
             docker load < frontend.tar
             docker load < backend.tar
             
-            # Set proper permissions
-            sudo chown -R www-data:www-data ~/backend/storage ~/backend/database
-            sudo chmod -R 775 ~/backend/storage ~/backend/database
-            
             # Start containers with new images
             docker compose -f docker-compose.prod.yml up -d
+            
+            # Set proper permissions for www-data after containers are up
+            sudo chown -R www-data:www-data ~/backend/storage ~/backend/database
             
             # Cleanup
             rm frontend.tar backend.tar
