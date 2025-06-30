@@ -80,8 +80,10 @@ jobs:
             # Start containers with new images
             docker compose -f docker-compose.prod.yml up -d
             
-            # Set proper permissions for www-data after containers are up
+            # Create storage link and set permissions
+            docker exec ubuntu-backend-1 php artisan storage:link
             sudo chown -R www-data:www-data ~/backend/storage ~/backend/database
+            sudo chmod -R 775 ~/backend/storage ~/backend/database
             
             # Cleanup
             rm frontend.tar backend.tar
