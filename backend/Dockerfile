@@ -44,21 +44,10 @@ COPY . .
 # Generate optimized autoload files
 RUN composer dump-autoload --optimize
 
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Copy and set up configuration files
-COPY .env.example .env
-RUN php artisan key:generate
-
 # Optimize Laravel for production
 RUN php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache
-
-# Apache runs on port 80
-EXPOSE 80
 
 # Start Apache
 CMD ["apache2-foreground"] 

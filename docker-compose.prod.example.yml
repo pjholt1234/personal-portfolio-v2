@@ -35,5 +35,4 @@ services:
     volumes:
       - ~/backend/storage:/var/www/html/storage
       - ~/backend/database:/var/www/html/database
-      - ~/backend/storage/app/public:/var/www/html/public/storage
     restart: unless-stopped 
