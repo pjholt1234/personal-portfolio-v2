@@ -1,4 +1,6 @@
 /frontend/.env
+/backend/.env
+/scripts/.env
 /.idea
 /.DS_Store
 docker-compose.prod.yml
