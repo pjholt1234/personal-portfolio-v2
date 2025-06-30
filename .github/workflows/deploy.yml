@@ -9,7 +9,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      BACKEND_URL: http://13.51.170.162:8001
+      BACKEND_URL: ${{ vars.BACKEND_URL }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -40,8 +40,8 @@ jobs:
       - name: Copy files to EC2
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          EC2_HOST: 13.51.170.162
-          EC2_USERNAME: ubuntu
+          EC2_HOST: ${{ vars.EC2_HOST }}
+          EC2_USERNAME: ${{ vars.EC2_USERNAME }}
         run: |
           echo "$SSH_PRIVATE_KEY" > ssh_key
           chmod 600 ssh_key
@@ -56,8 +56,8 @@ jobs:
       - name: Deploy to EC2
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          EC2_HOST: 13.51.170.162
-          EC2_USERNAME: ubuntu
+          EC2_HOST: ${{ vars.EC2_HOST }}
+          EC2_USERNAME: ${{ vars.EC2_USERNAME }}
         run: |
           echo "$SSH_PRIVATE_KEY" > ssh_key
           chmod 600 ssh_key
