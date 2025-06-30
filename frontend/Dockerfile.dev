@@ -1,0 +1,26 @@
+FROM node:20-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Add build arguments
+ARG VITE_BACKEND_URL
+ARG VITE_API_URL
+ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
+ENV VITE_API_URL=$VITE_API_URL
+
+# Increase Node.js memory limit
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
+# Install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy application files
+COPY . .
+
+# Expose Vite's default port
+EXPOSE 5173
+
+# Start development server with host set to allow external connections
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"] 
