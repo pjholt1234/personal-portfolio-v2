@@ -17,7 +17,7 @@ class FileResource extends JsonResource
         return [
             'name' => $this->name,
             'machine_name' => $this->machine_name,
-            'url' => $this->media?->first()->getUrl(),
+            'url' => $this->media?->first() ? asset('storage/' . $this->media->first()->id . '/' . $this->media->first()->file_name) : null,
         ];
     }
 }
