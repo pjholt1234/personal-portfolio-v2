@@ -26,8 +26,15 @@ RUN npm run build
 # Production stage
 FROM httpd:2.4-alpine
 
+# Enable mod_rewrite
+RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf && \
+    sed -i 's/AllowOverride None/AllowOverride All/g' /usr/local/apache2/conf/httpd.conf
+
 # Copy built assets from build stage
 COPY --from=build /app/dist /usr/local/apache2/htdocs/
+
+# Copy .htaccess file
+COPY .htaccess /usr/local/apache2/htdocs/
 
 # Expose port 80
 EXPOSE 80
