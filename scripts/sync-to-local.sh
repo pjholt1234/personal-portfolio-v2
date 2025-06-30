@@ -1,13 +1,21 @@
 #!/bin/bash
 
-# Configuration
-REMOTE_USER="ubuntu"
-REMOTE_HOST="13.51.170.162"
-SSH_KEY="/Users/paul-ho/Downloads/pjs-key.pem"
-REMOTE_PATH="/home/ubuntu/backend"
-LOCAL_PATH="./backend"
-STORAGE_PATH="storage"
-DB_PATH="database/database.sqlite"
+# Load environment variables
+if [ -f ".env" ]; then
+    set -a  # automatically export all variables
+    source .env
+    set +a
+    
+    # Debug: Print loaded configuration
+    echo "Loaded configuration:"
+    echo "REMOTE_USER: $REMOTE_USER"
+    echo "REMOTE_HOST: $REMOTE_HOST"
+    echo "REMOTE_PATH: $REMOTE_PATH"
+    echo "LOCAL_PATH: $LOCAL_PATH"
+else
+    echo "Error: .env file not found"
+    exit 1
+fi
 
 # Function to show usage
 usage() {
@@ -37,7 +45,7 @@ mkdir -p "$LOCAL_PATH/$STORAGE_PATH/app/public" \
 
 # Sync storage directory
 echo "📁 Syncing storage files..."
-rsync -av -e "ssh -i $SSH_KEY" \
+rsync -av -e "ssh -i $SSH_KEY_LOCATION" \
     "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/$STORAGE_PATH/" \
     "$LOCAL_PATH/$STORAGE_PATH/"
 
@@ -50,7 +58,7 @@ if [ "$include_db" = true ]; then
         echo "📦 Local database backed up to database.sqlite.backup"
     fi
     
-    rsync -av -e "ssh -i $SSH_KEY" \
+    rsync -av -e "ssh -i $SSH_KEY_LOCATION" \
         "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/$DB_PATH" \
         "$LOCAL_PATH/$DB_PATH"
 fi
