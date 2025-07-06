@@ -1,11 +1,14 @@
 meta {
   name: Blocks
   type: http
-  seq: 4
+  seq: 6
 }
 
 get {
-  url: {{APP_URL}}/api/page/home/blocks
+  url: {{APP_URL}}/api/projects/test-project/blocks
   body: none
   auth: none
+  headers {
+    X-API-Token: {{API_TOKEN}}
+  }
 }

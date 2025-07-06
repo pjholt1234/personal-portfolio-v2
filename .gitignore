@@ -7,3 +7,4 @@ docker-compose.prod.yml
 frontend.tar
 backend.tar
 .env.production
+/Bruno/personal-portfolio-v3/environments/local.bru

@@ -1,11 +1,14 @@
 meta {
   name: Event
   type: http
-  seq: 6
+  seq: 5
 }
 
 get {
-  url: {{APP_URL}}/api/events/lightflows
+  url: {{APP_URL}}/api/events/test-event
   body: none
   auth: none
+  headers {
+    X-API-Token: {{API_TOKEN}}
+  }
 }

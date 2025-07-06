@@ -1,11 +1,14 @@
 meta {
   name: Events
   type: http
-  seq: 3
+  seq: 4
 }
 
 get {
   url: {{APP_URL}}/api/events
   body: none
   auth: none
+  headers {
+    X-API-Token: {{API_TOKEN}}
+  }
 }

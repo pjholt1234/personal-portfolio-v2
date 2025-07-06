@@ -8,6 +8,7 @@ services:
     environment:
       - VITE_BACKEND_URL=${BACKEND_URL}
       - VITE_API_URL=${BACKEND_URL}
+      - VITE_API_TOKEN=${API_TOKEN}
     depends_on:
       - backend
     restart: unless-stopped
@@ -22,6 +23,7 @@ services:
       - APP_KEY=${APP_KEY}
       - APP_DEBUG=false
       - APP_URL=${BACKEND_URL}
+      - API_TOKEN=${API_TOKEN}
       - LOG_CHANNEL=stack
       - LOG_DEPRECATIONS_CHANNEL=null
       - LOG_LEVEL=warning
