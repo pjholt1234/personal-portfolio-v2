@@ -17,7 +17,7 @@ const LeftContent:FC<LeftContentProps> = ({
                 <Typography component="h1">
                     PJ Holt
                 </Typography>
-                <Typography component="h2">
+                <Typography component="h2" className={styles.subtitle}>
                     Full stack developer
                 </Typography>
             </div>
