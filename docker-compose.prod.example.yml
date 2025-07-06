@@ -35,4 +35,9 @@ services:
     volumes:
       - ~/backend/storage:/var/www/html/storage
       - ~/backend/database:/var/www/html/database
-    restart: unless-stopped 
+    restart: unless-stopped
+    command: >
+      bash -c "php artisan config:clear
+      && php artisan cache:clear
+      && php artisan view:clear
+      && apache2-foreground" 
