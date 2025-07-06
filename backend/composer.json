@@ -5,15 +5,9 @@
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/Users/paul-ho/Sites/cv-generator"
-        }
-    ],
     "require": {
         "php": "^8.2",
-        "pj-holt/cv-generator": "@dev",
+        "pj-holt/cv-generator": "^1.0",
         "filament/filament": "^3.2",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "laravel/framework": "^12.0",

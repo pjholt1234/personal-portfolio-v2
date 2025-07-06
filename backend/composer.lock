@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59d1e0c6c5a678b3f01a3af6cfdabe30",
+    "content-hash": "609e790dfcabd68b4c362106381c2793",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4296,11 +4296,17 @@
         },
         {
             "name": "pj-holt/cv-generator",
-            "version": "dev-master",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pjholt1234/cv-generator.git",
+                "reference": "c2f774808b16aee61ecc22bead1a7c5a0b1daeb5"
+            },
             "dist": {
-                "type": "path",
-                "url": "/Users/paul-ho/Sites/cv-generator",
-                "reference": "893565b8c312567912f13a8ce20f5f5fe2a90428"
+                "type": "zip",
+                "url": "https://api.github.com/repos/pjholt1234/cv-generator/zipball/c2f774808b16aee61ecc22bead1a7c5a0b1daeb5",
+                "reference": "c2f774808b16aee61ecc22bead1a7c5a0b1daeb5",
+                "shasum": ""
             },
             "require": {
                 "dompdf/dompdf": "^3.1",
@@ -4315,21 +4321,22 @@
                     "CVGenerator\\": "src/"
                 }
             },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
-                    "name": "Your Name",
-                    "email": "your@email.com"
+                    "name": "Paul Holt",
+                    "email": "pjholt1234@gmail.com"
                 }
             ],
             "description": "A PHP package to generate technical styled CV PDFs",
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/pjholt1234/cv-generator/issues",
+                "source": "https://github.com/pjholt1234/cv-generator/tree/v1.0.0"
+            },
+            "time": "2025-07-06T22:24:31+00:00"
         },
         {
             "name": "psr/cache",
@@ -10581,9 +10588,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "pj-holt/cv-generator": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
