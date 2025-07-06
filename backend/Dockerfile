@@ -5,7 +5,7 @@ FROM php:8.3-apache
 WORKDIR /var/www/html
 
 # Enable Apache modules and configure
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
 
 # Install dependencies and PHP extensions required for Laravel
 RUN apt-get update && apt-get install -y \
