@@ -16,11 +16,14 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
 
 class EventResource extends Resource
 {
@@ -59,8 +62,38 @@ class EventResource extends Resource
                     ->multiple()
                     ->relationship('files', 'name'),
                 Builder::make('content')
-                    ->blocks(self::getBlocks())
-                    ->columnSpanFull()
+                    ->blocks(self::getBlocks()),
+                Section::make('Reference')
+                    ->schema([
+                        TextInput::make('reference_name')
+                            ->label('Reference Name')
+                            ->required(fn (Get $get): bool => $get('type') === EventTypesEnum::PROFESSIONAL->name)
+                            ->maxLength(255),
+                        TextInput::make('reference_job_title')
+                            ->label('Reference Job Title')
+                            ->required(fn (Get $get): bool => $get('type') === EventTypesEnum::PROFESSIONAL->name)
+                            ->maxLength(255),
+                        TextInput::make('reference_company')
+                            ->label('Reference Company')
+                            ->required(fn (Get $get): bool => $get('type') === EventTypesEnum::PROFESSIONAL->name)
+                            ->maxLength(255),
+                        TextInput::make('reference_phone')
+                            ->label('Reference Phone')
+                            ->required(fn (Get $get): bool => $get('type') === EventTypesEnum::PROFESSIONAL->name)
+                            ->tel()
+                            ->maxLength(255),
+                        TextInput::make('reference_email')
+                            ->label('Reference Email')
+                            ->required(fn (Get $get): bool => $get('type') === EventTypesEnum::PROFESSIONAL->name)
+                            ->email()
+                            ->maxLength(255),
+                        RichEditor::make('reference_relationship')
+                            ->label('Reference Relationship')
+                            ->required(fn (Get $get): bool => $get('type') === EventTypesEnum::PROFESSIONAL->name)
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2)
+                    ->visible(fn (Get $get): bool => $get('type') === EventTypesEnum::PROFESSIONAL->name),
             ]);
     }
 
@@ -89,6 +122,14 @@ class EventResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_name')
+                    ->label('Reference')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_company')
+                    ->label('Reference Company')
+                    ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([

@@ -14,6 +14,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -46,8 +47,12 @@ class ProjectResource extends Resource
                 TextInput::make('icon'),
                 TextInput::make('github_link')
                     ->url(),
-                Checkbox::make('hidden')
-                    ->label('Hide from project search'),
+                Toggle::make('hidden')
+                    ->label('Hide from project search')
+                    ->default(false),
+                Toggle::make('cv')
+                    ->label('Include in CV')
+                    ->default(false),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
@@ -83,6 +88,12 @@ class ProjectResource extends Resource
                 Tables\Columns\TextColumn::make('end_date')
                     ->date()
                     ->sortable(),
+                Tables\Columns\IconColumn::make('hidden')
+                    ->boolean()
+                    ->label('Hidden'),
+                Tables\Columns\IconColumn::make('cv')
+                    ->boolean()
+                    ->label('CV'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

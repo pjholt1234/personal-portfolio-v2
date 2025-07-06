@@ -11,6 +11,7 @@ class Project extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'subtitle',
         'type',
         'icon',
@@ -18,10 +19,9 @@ class Project extends Model
         'description_long',
         'start_date',
         'end_date',
-        'content',
-        'slug',
         'github_link',
         'hidden',
+        'cv',
     ];
 
     protected $casts = [
@@ -29,6 +29,7 @@ class Project extends Model
         'end_date' => 'date',
         'content' => 'json',
         'hidden' => 'boolean',
+        'cv' => 'boolean',
     ];
 
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\Api\CVController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(EventController::class)->group(function(){
@@ -17,4 +18,9 @@ Route::controller(ProjectController::class)->group(function(){
 
 Route::controller(BlockController::class)->group(function(){
     Route::get('/{modelName}/{slug}/blocks', 'getBlocks');
+});
+
+Route::controller(CVController::class)->group(function(){
+    Route::get('/cv', 'getCV');
+    Route::post('/cv/generate', 'generate');
 });

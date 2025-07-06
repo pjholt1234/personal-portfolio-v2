@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EventTypesEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -23,12 +24,20 @@ class Event extends Model implements HasMedia
         'end_date',
         'content',
         'slug',
+        'institution',
+        'role',
+        'reference_name',
+        'reference_job_title',
+        'reference_company',
+        'reference_phone',
+        'reference_email',
+        'reference_relationship'
     ];
 
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
-        'content' => 'json',
+        'content' => 'array',
         'media' => 'array',
     ];
 
