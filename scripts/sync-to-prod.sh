@@ -35,25 +35,26 @@ done
 
 echo "🚀 Starting sync to production..."
 
-# Ensure remote directories exist
-ssh -i "$SSH_KEY" "$REMOTE_USER@$REMOTE_HOST" "mkdir -p $REMOTE_PATH/$STORAGE_PATH/app/public $REMOTE_PATH/$STORAGE_PATH/framework/{cache,sessions,views} $REMOTE_PATH/$STORAGE_PATH/logs $REMOTE_PATH/database"
+# Ensure remote directories exist and set initial permissions
+echo "🔒 Setting initial permissions..."
+ssh -i "$SSH_KEY" "$REMOTE_USER@$REMOTE_HOST" "sudo mkdir -p $REMOTE_PATH/$STORAGE_PATH/app/public $REMOTE_PATH/$STORAGE_PATH/framework/{cache,sessions,views} $REMOTE_PATH/$STORAGE_PATH/logs $REMOTE_PATH/database && sudo chown -R $REMOTE_USER:$REMOTE_USER $REMOTE_PATH/$STORAGE_PATH $REMOTE_PATH/database"
 
 # Sync storage directory
 echo "📁 Syncing storage files..."
-rsync -av -e "ssh -i $SSH_KEY_LOCATION" \
+rsync -av -e "ssh -i $SSH_KEY" \
     "$LOCAL_PATH/$STORAGE_PATH/" \
     "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/$STORAGE_PATH/"
 
 # Sync database if requested
 if [ "$include_db" = true ]; then
     echo "🗄️  Syncing database..."
-    rsync -av -e "ssh -i $SSH_KEY_LOCATION" \
+    rsync -av -e "ssh -i $SSH_KEY" \
         "$LOCAL_PATH/$DB_PATH" \
         "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/$DB_PATH"
 fi
 
-# Set proper permissions
-echo "🔒 Setting permissions..."
+# Set final permissions for web server
+echo "🔒 Setting final permissions..."
 ssh -i "$SSH_KEY" "$REMOTE_USER@$REMOTE_HOST" "sudo chown -R www-data:www-data $REMOTE_PATH/$STORAGE_PATH $REMOTE_PATH/database && sudo chmod -R 775 $REMOTE_PATH/$STORAGE_PATH $REMOTE_PATH/database"
 
 echo "✅ Sync to production complete!" 
