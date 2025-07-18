@@ -12,6 +12,7 @@ My personal portfolio website showcasing my projects, skills, and experience. Bu
 
 ### Backend
 - Laravel
+- Filament
 - SQLite
 - PHP 8.3
 
