@@ -1,22 +1,18 @@
-# Personal Portfolio v3
+# Personal Portfolio v2
 
 My personal portfolio website showcasing my projects, skills, and experience. Built with modern technologies and a focus on performance and user experience.
 
 ## Tech Stack
 
 ### Frontend
-- Next.js 13 (App Router)
 - TypeScript
-- Tailwind CSS
-- Framer Motion
-- Three.js
+- React
+- TypeScript
 
 ### Backend
 - Laravel
 - SQLite
 - PHP 8.3
-- React
-- TypeScript
 
 ## Deployment
 The application is deployed on: AWS EC2 instance
