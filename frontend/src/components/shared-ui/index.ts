@@ -16,3 +16,4 @@ export { default as Projects } from './Blocks/Projects/Projects';
 export { default as YoutubeEmbed } from './Blocks/YoutubeEmbed/YoutubeEmbed';
 export { default as TextWithImage } from './Blocks/TextWithImage/TextWithImage';
 export { default as Files } from './Files/Files';
+export { default as Links } from './Links/Links';

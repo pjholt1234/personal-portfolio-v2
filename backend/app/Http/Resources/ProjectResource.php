@@ -29,6 +29,13 @@ class ProjectResource extends JsonResource
             'github_link' => $this->github_link,
             'hidden' => $this->hidden,
             'files' => FileResource::collection($this->files),
+            'links' => $this->links->map(function ($link) {
+                return [
+                    'id' => $link->id,
+                    'name' => $link->name,
+                    'link' => $link->link,
+                ];
+            })->toArray(),
         ];
 
         return $this->addBlocksWhenRequested($data);

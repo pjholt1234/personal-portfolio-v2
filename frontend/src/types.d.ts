@@ -27,6 +27,7 @@ export interface Project {
     github_link: string;
     hidden: boolean;
     files?: File[];
+    links?: Link[];
 }
 
 export interface CareerEvent {
@@ -77,6 +78,12 @@ export interface File {
     name: string;
     machine_name: string;
     url: string;
+}
+
+export interface Link {
+    id: number;
+    name: string;
+    link: string;
 }
 
 export interface Event {

@@ -1,10 +1,11 @@
-import {FC} from "react";
-import {BlockRenderer} from "@utils";
-import {formatDateTime, formatProjectType, mergeClassNames} from "@helpers";
+import { FC } from "react";
+import { BlockRenderer } from "@utils";
+import { formatDateTime, formatProjectType, mergeClassNames } from "@helpers";
 import styles from "./ProjectContent.module.scss";
-import {Files, Pill, Typography} from "@shared-ui";
+import { Files, Links, Pill, Typography } from "@shared-ui";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import isMobile from "@/Hooks/IsMobile";
+import { Project } from "@/types";
 
 interface ProjectContentProps {
     project: Project;
@@ -14,12 +15,12 @@ const ProjectContent: FC<ProjectContentProps> = ({ project }) => {
     const renderDate = () => {
         let startDate = 'Unknown';
 
-        if(project.start_date) {
+        if (project.start_date) {
             startDate = formatDateTime(project.start_date)
         }
 
         let endDate = 'Present';
-        if(project.end_date) {
+        if (project.end_date) {
             endDate = formatDateTime(project.end_date)
         }
 
@@ -54,11 +55,11 @@ const ProjectContent: FC<ProjectContentProps> = ({ project }) => {
                         <Typography component="h3" className="headed-layout__header--subtitle">
                             {project.subtitle ? project.subtitle : renderDate()}
                         </Typography>
-                        { !isMobile() && project.subtitle && (
+                        {!isMobile() && project.subtitle && (
                             <Typography component="h3" className="headed-layout__header--date">{renderDate()}</Typography>
                         )}
                     </div>
-                    { isMobile() && project.subtitle && (
+                    {isMobile() && project.subtitle && (
                         <div className={styles['header--container']}>
                             <Typography component="h4" className="headed-layout__header--date">{renderDate()}</Typography>
                         </div>
@@ -68,6 +69,7 @@ const ProjectContent: FC<ProjectContentProps> = ({ project }) => {
                     </div>
                 </div>
                 <Files files={project.files ?? []} />
+                <Links links={project.links ?? []} />
                 {renderTechnologyPills()}
             </div>
             <div className="headed-layout--content">

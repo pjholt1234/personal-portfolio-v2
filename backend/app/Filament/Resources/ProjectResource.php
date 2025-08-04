@@ -65,6 +65,19 @@ class ProjectResource extends Resource
                 Select::make('files')
                     ->multiple()
                     ->relationship('files', 'name'),
+                Repeater::make('links')
+                    ->relationship('links')
+                    ->schema([
+                        TextInput::make('name')
+                            ->required()
+                            ->label('Link Name'),
+                        TextInput::make('link')
+                            ->required()
+                            ->label('URL')
+                            ->url(),
+                    ])
+                    ->columns(2)
+                    ->columnSpanFull(),
                 Builder::make('content')
                     ->blocks(self::getBlocks())
                     ->columnSpanFull()

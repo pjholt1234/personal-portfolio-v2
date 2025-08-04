@@ -1,0 +1,18 @@
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &--item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: $secondary !important;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $tertiary !important;
+        }
+    }
+}

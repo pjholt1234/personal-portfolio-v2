@@ -1,9 +1,10 @@
-import {FC} from "react";
+import { FC } from "react";
 import styles from "./Files.module.scss";
 import DescriptionIcon from "@mui/icons-material/Description";
+import { File } from "@/types";
 
 interface FilesProps {
-    files:  File[];  
+    files: File[];
 }
 
 const Files: FC<FilesProps> = ({ files }) => {
