@@ -54,4 +54,9 @@ class Project extends Model
     {
         return $this->hasMany(Link::class);
     }
+
+    public function cvBullets(): HasMany
+    {
+        return $this->hasMany(CVBullet::class);
+    }
 }

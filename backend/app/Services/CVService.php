@@ -24,10 +24,10 @@ class CVService
         }
 
         $cvData = $this->prepareCVData($contact);
-        
+
         $filename = self::CV_FILENAME_PREFIX . now()->format('Y_m_d_His') . '.pdf';
         $outputPath = Storage::disk('public')->path(self::CV_STORAGE_PATH . '/' . $filename);
-        
+
         if (!Storage::disk('public')->exists(self::CV_STORAGE_PATH)) {
             Storage::disk('public')->makeDirectory(self::CV_STORAGE_PATH);
         }
@@ -41,13 +41,13 @@ class CVService
     public function getLatestCV(): ?string
     {
         $files = Storage::disk('public')->files(self::CV_STORAGE_PATH);
-        
+
         if (empty($files)) {
             return null;
         }
 
         rsort($files);
-        
+
         return basename($files[0]);
     }
 
@@ -144,14 +144,17 @@ class CVService
             $subtitle = $project->subtitle . ' (' . $dateRange . ')';
 
             $bullets = [];
-            $bullets[] = $project->description;
+
+            foreach ($project->cvBullets as $bullet) {
+                $bullets[] = $bullet->content;
+            }
 
             if ($project->technologies->count() > 0) {
-                $bullets[] = "Technologies: " . $project->technologies->pluck('name')->join(', ');
+                $bullets[] = $project->technologies->pluck('name')->join(', ');
             }
 
             if ($project->github_link) {
-                $bullets[] = "GitHub: " . $project->github_link;
+                $bullets[] = $project->github_link;
             }
 
             $renderedProjects[] = [
@@ -201,4 +204,4 @@ class CVService
             );
         }
     }
-} 
+}

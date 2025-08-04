@@ -51,9 +51,6 @@ class ProjectResource extends Resource
                 Toggle::make('hidden')
                     ->label('Hide from project search')
                     ->default(false),
-                Toggle::make('cv')
-                    ->label('Include in CV')
-                    ->default(false),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
@@ -78,6 +75,21 @@ class ProjectResource extends Resource
                     ])
                     ->columns(2)
                     ->columnSpanFull(),
+                Toggle::make('cv')
+                    ->label('Include in CV')
+                    ->default(false),
+                Repeater::make('cvBullets')
+                    ->relationship('cvBullets')
+                    ->schema([
+                        Textarea::make('content')
+                            ->required()
+                            ->label('CV Bullet Point')
+                            ->rows(2),
+                    ])
+                    ->maxItems(3)
+                    ->columnSpanFull()
+                    ->required(fn(callable $get) => $get('cv') === true)
+                    ->visible(fn(callable $get) => $get('cv') === true),
                 Builder::make('content')
                     ->blocks(self::getBlocks())
                     ->columnSpanFull()
