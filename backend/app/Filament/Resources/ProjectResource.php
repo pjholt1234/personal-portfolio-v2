@@ -33,7 +33,8 @@ class ProjectResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title')
-                    ->required(),
+                    ->required()
+                    ->unique(Project::class, 'title', ignoreRecord: true),
                 TextInput::make('slug')
                     ->unique(Project::class, 'slug', ignoreRecord: true)
                     ->required(),
