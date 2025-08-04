@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cv_bullets', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');
+            $table->morphs('cv_bulletable');
             $table->timestamps();
         });
     }

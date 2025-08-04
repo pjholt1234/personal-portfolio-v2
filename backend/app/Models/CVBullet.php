@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class CVBullet extends Model
 {
@@ -11,11 +11,12 @@ class CVBullet extends Model
 
     protected $fillable = [
         'content',
-        'project_id'
+        'cv_bulletable_type',
+        'cv_bulletable_id'
     ];
 
-    public function project(): BelongsTo
+    public function cvBulletable(): MorphTo
     {
-        return $this->belongsTo(Project::class);
+        return $this->morphTo();
     }
 }

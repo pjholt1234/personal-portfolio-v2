@@ -95,12 +95,18 @@ class CVService
                 ];
             }
 
+            $bullets = [];
+
+            foreach ($event->cvBullets as $bullet) {
+                $bullets[] = $bullet->content;
+            }
+
             $cvData->addExperience(
                 $event->title,
                 $event->subtitle,
                 $event->start_date->format('M Y'),
                 $event->end_date ? $event->end_date->format('M Y') : 'Present',
-                [$event->description],
+                $bullets,
                 $reference
             );
         }
@@ -113,12 +119,18 @@ class CVService
             ->get();
 
         foreach ($educationEvents as $event) {
+            $bullets = [];
+
+            foreach ($event->cvBullets as $bullet) {
+                $bullets[] = $bullet->content;
+            }
+
             $cvData->addEducation(
                 $event->title,
                 $event->subtitle,
                 $event->start_date->format('M Y'),
                 $event->end_date ? $event->end_date->format('M Y') : 'Present',
-                [$event->description]
+                $bullets
             );
         }
     }

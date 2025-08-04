@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\EventTypesEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -49,5 +50,10 @@ class Event extends Model implements HasMedia
     public function files(): MorphToMany
     {
         return $this->morphToMany(File::class, 'fileable');
+    }
+
+    public function cvBullets(): MorphMany
+    {
+        return $this->morphMany(CVBullet::class, 'cv_bulletable');
     }
 }

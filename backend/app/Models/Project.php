@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Project extends Model
@@ -55,8 +56,8 @@ class Project extends Model
         return $this->hasMany(Link::class);
     }
 
-    public function cvBullets(): HasMany
+    public function cvBullets(): MorphMany
     {
-        return $this->hasMany(CVBullet::class);
+        return $this->morphMany(CVBullet::class, 'cv_bulletable');
     }
 }
