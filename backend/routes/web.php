@@ -4,10 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Storage;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -20,7 +16,7 @@ Route::middleware([
 
 Route::get('/admin/resources/c-v-s/download/{filename}', function (string $filename) {
     $path = 'cv/' . $filename;
-    
+
     if (!Storage::disk('public')->exists($path)) {
         abort(404);
     }
