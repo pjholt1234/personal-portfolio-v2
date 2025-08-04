@@ -22,6 +22,7 @@ class Project extends Model
         'github_link',
         'hidden',
         'cv',
+        'content'
     ];
 
     protected $casts = [
