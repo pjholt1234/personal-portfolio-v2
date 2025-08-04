@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Enums\EventTypesEnum;
+use App\Enums\ProjectTypesEnum;
 use App\Models\Contact;
 use App\Models\Event;
 use App\Models\Project;
@@ -153,7 +154,13 @@ class CVService
                 $dateRange .= ' - ' . $project->end_date->format('M Y');
             }
 
-            $subtitle = $project->subtitle . ' (' . $dateRange . ')';
+            $type = match($project->type) {
+                ProjectTypesEnum::PROFESSIONAL->name => 'Professional',
+                ProjectTypesEnum::ACADEMIC->name => 'Academic',
+                default => 'Personal'
+            };
+
+            $subtitle = $type . ' (' . $dateRange . ')';
 
             $bullets = [];
 
