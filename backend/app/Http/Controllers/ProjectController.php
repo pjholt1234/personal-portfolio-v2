@@ -12,6 +12,7 @@ class ProjectController extends Controller
     {
         $projects = Project::query()
             ->where('hidden', false)
+            ->orderBy('start_date', 'desc')
             ->get();
 
         return ProjectResource::collection($projects)->response();
