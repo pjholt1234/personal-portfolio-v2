@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "609e790dfcabd68b4c362106381c2793",
+    "content-hash": "f8a4fabb08ae85689220332db3183e80",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4296,16 +4296,16 @@
         },
         {
             "name": "pj-holt/cv-generator",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pjholt1234/cv-generator.git",
-                "reference": "c2f774808b16aee61ecc22bead1a7c5a0b1daeb5"
+                "reference": "8930bd7310cf71ceae7342bd55d295665219c3f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pjholt1234/cv-generator/zipball/c2f774808b16aee61ecc22bead1a7c5a0b1daeb5",
-                "reference": "c2f774808b16aee61ecc22bead1a7c5a0b1daeb5",
+                "url": "https://api.github.com/repos/pjholt1234/cv-generator/zipball/8930bd7310cf71ceae7342bd55d295665219c3f7",
+                "reference": "8930bd7310cf71ceae7342bd55d295665219c3f7",
                 "shasum": ""
             },
             "require": {
@@ -4334,9 +4334,9 @@
             "description": "A PHP package to generate technical styled CV PDFs",
             "support": {
                 "issues": "https://github.com/pjholt1234/cv-generator/issues",
-                "source": "https://github.com/pjholt1234/cv-generator/tree/v1.0.0"
+                "source": "https://github.com/pjholt1234/cv-generator/tree/v1.0.1"
             },
-            "time": "2025-07-06T22:24:31+00:00"
+            "time": "2025-08-04T20:49:51+00:00"
         },
         {
             "name": "psr/cache",

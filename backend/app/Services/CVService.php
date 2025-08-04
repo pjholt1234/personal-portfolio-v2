@@ -62,7 +62,8 @@ class CVService
             $contact->telephone,
             $contact->email,
             $contact->linkedin,
-            'Full stack developer'
+            'Full stack developer',
+            'https://pjholt.com'
         );
 
         if ($contact->introduction) {
@@ -84,18 +85,6 @@ class CVService
             ->get();
 
         foreach ($professionalEvents as $event) {
-            $reference = null;
-            if ($event->reference_name) {
-                $reference = [
-                    'name' => $event->reference_name,
-                    'job_title' => $event->reference_job_title,
-                    'company' => $event->reference_company,
-                    'phone' => $event->reference_phone,
-                    'email' => $event->reference_email,
-                    'relationship' => strip_tags($event->reference_relationship)
-                ];
-            }
-
             $bullets = [];
 
             foreach ($event->cvBullets as $bullet) {
@@ -108,7 +97,6 @@ class CVService
                 $event->start_date->format('M Y'),
                 $event->end_date ? $event->end_date->format('M Y') : 'Present',
                 $bullets,
-                $reference
             );
         }
     }
