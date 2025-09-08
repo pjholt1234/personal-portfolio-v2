@@ -9,6 +9,7 @@ use App\Models\Event;
 use App\Models\File;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -61,6 +62,8 @@ class EventResource extends Resource
                 Select::make('files')
                     ->multiple()
                     ->relationship('files', 'name'),
+                Checkbox::make('hidden' )
+                    ->label('Hidden from frontend'),
                 Repeater::make('cvBullets')
                     ->relationship('cvBullets')
                     ->schema([

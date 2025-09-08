@@ -10,7 +10,10 @@ class EventController extends Controller
 {
     public function index(): JsonResponse
     {
-        $events = Event::all();
+        $events = Event::query()
+            ->where('hidden', false)
+            ->orderBy('start_date', 'desc')
+            ->get();
         return EventResource::collection($events)->response();
     }
 
