@@ -62,7 +62,7 @@ class CVService
             $contact->telephone,
             $contact->email,
             $contact->linkedin,
-            'Full stack developer',
+            'Full-stack developer',
             'https://pjholt.com'
         );
 
@@ -80,7 +80,9 @@ class CVService
 
     private function addExperience(CVData $cvData): void
     {
-        $professionalEvents = Event::where('type', EventTypesEnum::PROFESSIONAL->name)
+        $professionalEvents = Event::query()
+            ->where('type', EventTypesEnum::PROFESSIONAL->name)
+            ->where('hidden_from_cv', false)
             ->orderBy('start_date', 'desc')
             ->get();
 
@@ -103,7 +105,9 @@ class CVService
 
     private function addEducation(CVData $cvData): void
     {
-        $educationEvents = Event::where('type', EventTypesEnum::EDUCATION->name)
+        $educationEvents = Event::query()
+            ->where('type', EventTypesEnum::EDUCATION->name)
+            ->where('hidden_from_cv', false)
             ->orderBy('start_date', 'desc')
             ->get();
 

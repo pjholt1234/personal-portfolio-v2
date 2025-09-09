@@ -34,6 +34,7 @@ class Event extends Model implements HasMedia
         'reference_email',
         'reference_relationship',
         'hidden',
+        'hidden_from_cv'
     ];
 
     protected $casts = [
@@ -42,6 +43,7 @@ class Event extends Model implements HasMedia
         'content' => 'array',
         'media' => 'array',
         'hidden' => 'boolean',
+        'hidden_from_cv' => 'boolean',
     ];
 
     public function projects(): BelongsToMany

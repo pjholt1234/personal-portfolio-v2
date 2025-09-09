@@ -59,11 +59,13 @@ class EventResource extends Resource
                 DatePicker::make('start_date')
                     ->required(),
                 DatePicker::make('end_date'),
+                Checkbox::make('hidden' )
+                    ->label('Hidden from frontend'),
+                Checkbox::make('hidden_from_cv' )
+                    ->label('Hidden from CV'),
                 Select::make('files')
                     ->multiple()
                     ->relationship('files', 'name'),
-                Checkbox::make('hidden' )
-                    ->label('Hidden from frontend'),
                 Repeater::make('cvBullets')
                     ->relationship('cvBullets')
                     ->schema([
