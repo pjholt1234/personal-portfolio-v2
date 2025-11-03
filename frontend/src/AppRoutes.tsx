@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "@pages/Home";
 import Project from "@pages/Project";
 import Event from "@pages/Event";
+import Post from "@pages/Post";
 
 const AppRoutes = () => {
     return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
 
             <Route path="/projects" element={<Home />}/>
             <Route path="/projects/:slug" element={<Project />} />
+            <Route path="/projects/:projectSlug/posts/:postSlug" element={<Post />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

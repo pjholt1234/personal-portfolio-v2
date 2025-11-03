@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\BlockTypeException;
 use App\Models\Event;
 use App\Models\Page;
+use App\Models\Post;
 use App\Models\Project;
 use App\Services\BlockManagerService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -18,6 +19,7 @@ class BlockController extends Controller
             'page' => Page::class,
             'project' => Project::class,
             'event' => Event::class,
+            'post' => Post::class,
         ];
 
         if (!array_key_exists($modelName, $modelMap)) {

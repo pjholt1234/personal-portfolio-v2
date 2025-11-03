@@ -3,6 +3,7 @@ let projectsCache: { data: any[], timestamp: number } | null = null;
 let blocksCache: { [key: string]: { data: any, timestamp: number } } = {};
 let completeEventsCache: { [key: string]: { data: any, timestamp: number } } = {};
 let completeProjectsCache: { [key: string]: { data: any, timestamp: number } } = {};
+let completePostsCache: { [key: string]: { data: any, timestamp: number } } = {};
 
 const CACHE_DURATION = parseInt(import.meta.env.VITE_CACHE_DURATION, 10000);
 
@@ -103,10 +104,31 @@ const getEvent = async (eventSlug: string) => {
     }
 }
 
+const getPost = async (projectSlug: string, postSlug: string) => {
+    const now = Date.now();
+    const cacheKey = `post-${projectSlug}-${postSlug}`;
+
+    if (completePostsCache[cacheKey] && (now - completePostsCache[cacheKey].timestamp < CACHE_DURATION)) {
+        return completePostsCache[cacheKey]?.data;
+    }
+
+    try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/projects/${projectSlug}/posts/${postSlug}`);
+        const data = await response.json();
+
+        completePostsCache[cacheKey] = { data, timestamp: now };
+        return data;
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        throw error;
+    }
+}
+
 export {
     getEvents,
     getProjects,
     getBlocks,
     getProject,
     getEvent,
+    getPost,
 }

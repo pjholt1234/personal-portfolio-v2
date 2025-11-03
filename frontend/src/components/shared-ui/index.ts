@@ -13,6 +13,7 @@ export { default as Typography } from './Typography/Typography';
 export { default as CardHeading } from './CardHeading/CardHeading';
 export { default as PrefetchLink } from './PrefetchLink/PrefetchLink';
 export { default as Projects } from './Blocks/Projects/Projects';
+export { default as PostTableOfContents } from './Blocks/PostTableOfContents/PostTableOfContents';
 export { default as YoutubeEmbed } from './Blocks/YoutubeEmbed/YoutubeEmbed';
 export { default as TextWithImage } from './Blocks/TextWithImage/TextWithImage';
 export { default as Files } from './Files/Files';

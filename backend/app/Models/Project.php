@@ -60,4 +60,9 @@ class Project extends Model
     {
         return $this->morphMany(CVBullet::class, 'cv_bulletable');
     }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
 }

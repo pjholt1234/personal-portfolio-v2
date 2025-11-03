@@ -7,11 +7,12 @@ use App\Exceptions\BlockTypeException;
 use App\Filament\Blocks\BlockInterface;
 use App\Models\Event;
 use App\Models\Page;
+use App\Models\Post;
 use App\Models\Project;
 
 class BlockManagerService
 {
-    private readonly Page|Project|Event $model;
+    private readonly Page|Project|Event|Post $model;
     public function blocks(): array
     {
         $blocks = $this->getBlocks();
@@ -24,7 +25,7 @@ class BlockManagerService
         return $blockSchema;
     }
 
-    public function blocksApi(Page|Project|Event $model): array
+    public function blocksApi(Page|Project|Event|Post $model): array
     {
         $this->model = $model;
         if(empty($model->content)) {

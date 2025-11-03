@@ -6,6 +6,7 @@ use App\Enums\BlockTypesEnum;
 use App\Exceptions\BlockContentException;
 use App\Models\Event;
 use App\Models\Page;
+use App\Models\Post;
 use App\Models\Project;
 use Filament\Forms\Components\TextInput;
 
@@ -29,7 +30,7 @@ class YoutubeEmbed extends AbstractBlock {
     /**
      * @throws BlockContentException
      */
-    public function getResource(Page|Project|Event $model, array $blockContent): array
+    public function getResource(Page|Project|Event|Post $model, array $blockContent): array
     {
         $this->validateBlockContent($blockContent);
         $blockData = $blockContent['data'];

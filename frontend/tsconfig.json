@@ -33,7 +33,8 @@
       "@events": ["src/components/Events/index.ts"],
       "@home": ["src/components/Home/index.ts"],
       "@project": ["src/components/Project/index.ts"],
-      "@event": ["src/components/Event/index.ts"]
+      "@event": ["src/components/Event/index.ts"],
+      "@post": ["src/components/Post/index.ts"]
     }
   },
   "include": ["src"],

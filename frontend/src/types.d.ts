@@ -48,6 +48,24 @@ export interface CareerEvent {
     icon?: string;
 }
 
+export interface Post {
+    id: number;
+    title: string;
+    slug: string;
+    excerpt?: string;
+    published_at?: string;
+    project_slug: string;
+    blocks?: Block[];
+    previous_post?: {
+        title: string;
+        slug: string;
+    } | null;
+    next_post?: {
+        title: string;
+        slug: string;
+    } | null;
+}
+
 export interface Block {
     id: number;
     type: string;
@@ -64,6 +82,8 @@ export interface Block {
     set?: string[];
     pills?: string[];
     projects?: Project[];
+    posts?: Post[];
+    project_slug?: string;
     images?: string[];
 }
 

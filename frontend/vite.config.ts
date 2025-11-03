@@ -26,7 +26,8 @@ export default defineConfig({
       '@events': path.resolve(__dirname, './src/components/Events/index.ts'),
       '@home': path.resolve(__dirname, './src/components/Home/index.ts'),
       '@project': path.resolve(__dirname, './src/components/Project/index.ts'),
-      '@event': path.resolve(__dirname, './src/components/Event/index.ts')
+      '@event': path.resolve(__dirname, './src/components/Event/index.ts'),
+      '@post': path.resolve(__dirname, './src/components/Post/index.ts')
     }
   },
   css: {

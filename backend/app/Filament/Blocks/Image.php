@@ -8,6 +8,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use App\Models\Event;
 use App\Models\Page;
+use App\Models\Post;
 use App\Models\Project;
 
 class Image extends AbstractBlock {
@@ -37,7 +38,7 @@ class Image extends AbstractBlock {
     /**
      * @throws BlockContentException
      */
-    public function getResource(Page|Project|Event $model, array $blockContent): array
+    public function getResource(Page|Project|Event|Post $model, array $blockContent): array
     {
         $this->validateBlockContent($blockContent);
         $blockData = $blockContent['data'];

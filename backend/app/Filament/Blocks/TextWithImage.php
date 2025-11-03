@@ -10,6 +10,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use App\Models\Event;
 use App\Models\Page;
+use App\Models\Post;
 use App\Models\Project;
 
 class TextWithImage extends AbstractBlock
@@ -46,7 +47,7 @@ class TextWithImage extends AbstractBlock
     /**
      * @throws BlockContentException
      */
-    public function getResource(Page|Project|Event $model, array $blockContent): array
+    public function getResource(Page|Project|Event|Post $model, array $blockContent): array
     {
         $this->validateBlockContent($blockContent);
         $blockData = $blockContent['data'];

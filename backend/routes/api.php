@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HealthController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Api\CVController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,11 @@ Route::group(['middleware' => ['api']], function () {
     Route::controller(ProjectController::class)->group(function(){
         Route::get('/projects', 'index');
         Route::get('/projects/{project:slug}', 'show');
+    });
+
+    Route::controller(PostController::class)->group(function(){
+        Route::get('/projects/{project:slug}/posts', 'index');
+        Route::get('/projects/{project:slug}/posts/{post:slug}', 'show');
     });
 
     Route::controller(BlockController::class)->group(function(){

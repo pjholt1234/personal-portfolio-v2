@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('link');
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->string('slug');
+            $table->text('excerpt')->nullable();
+            $table->json('content')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+
+            $table->unique(['project_id', 'slug']);
         });
     }
 
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('posts');
     }
 };
